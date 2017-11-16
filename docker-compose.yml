@@ -1,0 +1,44 @@
+version: '2'
+services:
+  nginx:
+    image: nginx
+    container_name: pc-nginx
+    volumes:
+      - $PWD/docker/config/nginx:/etc/nginx
+      - $PWD/docker/logs/nginx:/var/log/nginx
+      - $PWD:/code
+    ports:
+      - 8000:80
+    links:
+      - php
+      - mysql
+      - redis
+  php:
+    # build: docker/config/php
+    build: .
+    image: php
+    container_name: pc-php
+    volumes:
+      - $PWD:/code
+      - $PWD/docker/config/php/php.ini:/usr/local/etc/php/php.ini
+
+  mysql:
+    image: mysql
+    container_name: pc-mysql
+    volumes:
+      - $PWD/docker/storage/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - 8001:3306
+  redis:
+    image: redis
+    container_name: pc-redis
+    ports:
+      - 8002:6379
+
+
+
+
+
+
