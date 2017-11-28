@@ -1,0 +1,24 @@
+{
+  "name": "prizeclaw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SinTan1071/PrizeClaw.git"
+  },
+  "author": "SinTan1071",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SinTan1071/PrizeClaw/issues"
+  },
+  "homepage": "https://github.com/SinTan1071/PrizeClaw#readme",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0"
+  }
+}
