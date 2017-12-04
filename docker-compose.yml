@@ -1,7 +1,7 @@
 version: '2'
 services:
   node:
-    build: .
+    # build: .
     command: npm start
     image: node
     container_name: wa-node
