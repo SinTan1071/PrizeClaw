@@ -2,6 +2,7 @@ version: '2'
 services:
   node:
     build: .
+    command: npm start
     image: node
     container_name: wa-node
     volumes:
