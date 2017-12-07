@@ -1,4 +1,6 @@
+const Promise = require('bluebird')
 const crypto = require('crypto')
+const request = Promise.promisify(require('request'))
 
 // 字典序排列
 exports.kSort = (data) => {
@@ -35,4 +37,20 @@ exports.makeSign = (str) => {
 exports.getTimeStamp = () => {
     var timestamp = Date.parse(new Date())
     return timestamp
+}
+
+// 发起一个promise化的http请求
+exports.request = (method, url, data, headers) => {
+    var opt = {
+        method : method,
+        url : url,
+        json : true,
+        body : JSON.stringify(data),
+        headers : headers
+    }
+    return request(opt).then((response) => {
+        // console.log(response.body)
+        var data = response.body
+        return Promise.resolve(data)
+    })
 }

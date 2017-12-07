@@ -1,34 +1,3 @@
-// const Koa = require('koa');
-
-// // 注意require('koa-router')返回的是函数:
-// const router = require('koa-router')();
-
-// const app = new Koa();
-
-// // log request URL:
-// app.use(async(ctx, next) => {
-//     console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-//     await next();
-// });
-
-// // add url-route:
-// router.get('/hello/:name', async(ctx, next) => {
-//     var name = ctx.params.name;
-//     ctx.response.body = `<h1>Hello, ${name}!</h1>`;
-// });
-
-// router.get('/', async(ctx, next) => {
-//     ctx.response.body = '<h1>Index</h1>';
-// });
-
-// // add router middleware:
-// app.use(router.routes());
-
-// app.listen(3000);
-// console.log('app started at port 3000...');
-
-/********************************************************************/ 
-
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -36,9 +5,14 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+// const logUtil = require('./common/logger')
 
+// 模型注册
+var syncDB = require('./models/syncDB')
+
+// 引入路由
 const index = require('./routes/index')
-const users = require('./routes/users')
+const user = require('./routes/user')
 const wechat = require('./routes/wechat')
 
 // error handler
@@ -57,14 +31,22 @@ app.use(views(__dirname + '/views', {extension: 'pug'}))
 // logger
 app.use(async(ctx, next) => {
     const start = new Date()
-    await next()
     const ms = new Date() - start
+    await next()
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+    // try {
+    //     await next()
+    //     //记录响应日志
+    //     logUtil.logResponse(ctx, ms);
+    // } catch (error) {
+    //     //记录异常日志
+    //     logUtil.logError(ctx, error, ms);
+    // }
 })
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(user.routes(), user.allowedMethods())
 app.use(wechat.routes(), wechat.allowedMethods())
 
 // error-handling
