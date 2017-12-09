@@ -1,5 +1,6 @@
 const CONF = require('../config/config')
 const util = require('../common/util')
+const service = require('../service/wechat')
 
 // 微信接入
 exports.index = async (ctx, next) => {
@@ -17,11 +18,19 @@ exports.index = async (ctx, next) => {
         tmp_str += ele
     }
     let local_sign = util.makeSign(tmp_str)
-    if (local_sign == signature) {
-        ctx.body = echostr
-    } else {
-        console.log("微信签名", signature)
-        ctx.body = "错误"
+    if(ctx.method == 'GET'){
+        if (local_sign == signature) {
+            ctx.body = echostr
+        } else {
+            ctx.body = "错误"
+        }
+    }else{
+        if (local_sign == signature) {
+            var msg = await service.wechatReply(ctx.request.body)
+            ctx.body = echostr
+        } else {
+            ctx.body = "错误"
+        }
     }
 }
 

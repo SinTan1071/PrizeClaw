@@ -4,7 +4,7 @@ const wechatCtr = require('../controllers/wechatCtr.js')
 
 router.prefix('/wechat')
 
-router.get('/', wechatCtr.index)
+router.all('/', wechatCtr.index)
 router.get('/test', wechatCtr.sendMsg)
 
 module.exports = router

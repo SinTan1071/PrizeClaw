@@ -1,5 +1,8 @@
 const Promise = require('bluebird')
 const crypto = require('crypto')
+const xml2js = require('xml2js')
+const XmlBuilder = new xml2js.Builder(); // JSON->xml
+const XmlParser = new xml2js.Parser(); //xml -> json
 const request = Promise.promisify(require('request'))
 
 // 字典序排列
@@ -52,5 +55,18 @@ exports.request = (method, url, data, headers) => {
         // console.log(response.body)
         var data = response.body
         return Promise.resolve(data)
+    })
+}
+
+// 把一端xml数据转化成JSON
+exports.xmlToJson = (xml) => {
+    return new Promise((resolve, reject) => {
+        XmlBuilder.parseString(xml, {
+            explicitArray: false
+        }, (err, json) => {
+            err
+                ? reject(err)
+                : resolve(json)
+        })
     })
 }
