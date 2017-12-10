@@ -27,13 +27,8 @@ exports.index = async (ctx, next) => {
         }
     }else{
         if (local_sign == signature) {
-            var data = await getRawBody(ctx.req, {
-                length: ctx.length,
-                limit: '1mb',
-                encoding: ctx.charset
-            })
-            console.log("获得的数据", data)
-            // var msg = await service.wechatReply(ctx.request.body)
+            var msg = await service.wechatReply(ctx.req)
+            console.log("请求的内容是什么", msg)
             // ctx.body = msg
         } else {
             ctx.body = "错误"
