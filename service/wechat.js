@@ -4,7 +4,7 @@ const Promise = require('bluebird')
 exports.wechatReply = (content) => {
     return new Promise((resolve, reject) => {
         let buf = ''
-        content.setEncoding('urf8')
+        content.setEncoding('utf8')
         content.on('data', (chunk)=>{
             buf += chunk
         })
