@@ -8,7 +8,7 @@ exports.index = async (ctx, next) => {
     let timestamp = ctx.query.timestamp
     let nonce = ctx.query.nonce
     let echostr = ctx.query.echostr
-    let wechat_token = CONF.wechat_token
+    let wechat_token = CONF.wechat.token
     let tmp_arr = new Array(wechat_token, timestamp, nonce)
     console.log("请求过来的数据", tmp_arr)
     let tmp_str = ''
