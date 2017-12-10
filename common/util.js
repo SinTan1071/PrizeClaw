@@ -61,7 +61,7 @@ exports.request = (method, url, data, headers) => {
 // 把一端xml数据转化成JSON
 exports.xmlToJson = (xml) => {
     return new Promise((resolve, reject) => {
-        XmlBuilder.parseString(xml, {
+        xml2js.parseString(xml, {
             explicitArray: false
         }, (err, json) => {
             err
