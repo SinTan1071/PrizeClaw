@@ -7,6 +7,9 @@ exports.index = async (ctx, next) => {
     let signature = ctx.query.signature
     let timestamp = ctx.query.timestamp
     let nonce = ctx.query.nonce
+    if(!nonce){
+        nonce = ''
+    }
     let echostr = ctx.query.echostr
     let wechat_token = CONF.wechat_token
     let tmp_arr = new Array(wechat_token, timestamp, nonce)
