@@ -9,6 +9,7 @@ exports.index = async (ctx, next) => {
     let nonce = ctx.query.nonce
     let echostr = ctx.query.echostr
     let wechat_token = CONF.wechat_token
+console.log("请求过来的数据", timestamp, nonce, echostr)
     let tmp_arr = new Array(wechat_token, timestamp)
     if (nonce) {
         tmp_arr.push(nonce)
