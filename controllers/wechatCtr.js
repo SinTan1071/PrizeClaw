@@ -9,11 +9,8 @@ exports.index = async (ctx, next) => {
     let nonce = ctx.query.nonce
     let echostr = ctx.query.echostr
     let wechat_token = CONF.wechat_token
-console.log("请求过来的数据", timestamp, nonce, echostr)
-    let tmp_arr = new Array(wechat_token, timestamp)
-    if (nonce) {
-        tmp_arr.push(nonce)
-    }
+    let tmp_arr = new Array(wechat_token, timestamp, nonce)
+    console.log("请求过来的数据", tmp_arr)
     let tmp_str = ''
     tmp_arr.sort()
     console.log("排序后的数据", tmp_arr)
