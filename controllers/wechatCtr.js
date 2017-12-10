@@ -27,8 +27,11 @@ exports.index = async (ctx, next) => {
         }
     }else{
         if (local_sign == signature) {
-            var msg = await service.wechatReply(ctx.req)
-            console.log("请求的内容是什么", msg)
+            var xml = await service.getWechatXml(ctx.req)
+            console.log("请求的XML", xml)
+            var wechat_msg = await util.xmlToJson(xml)
+            console.log("最终请求的结果", wechat_msg)
+
             // ctx.body = msg
         } else {
             ctx.body = "错误"
