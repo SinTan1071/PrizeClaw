@@ -4,6 +4,7 @@ const xml2js = require('xml2js')
 const XmlBuilder = new xml2js.Builder(); // JSON->xml
 const XmlParser = new xml2js.Parser(); //xml -> json
 const request = Promise.promisify(require('request'))
+const fs = require('fs')
 
 // 字典序排列
 exports.kSort = (data) => {
@@ -55,6 +56,8 @@ exports.request = (method, url, data, headers) => {
         // console.log(response.body)
         var data = response.body
         return Promise.resolve(data)
+    }).catch(err => {
+        return Promise.reject(err)
     })
 }
 
@@ -67,6 +70,24 @@ exports.xmlToJson = (xml) => {
             err
                 ? reject(err)
                 : resolve(json)
+        })
+    })
+}
+
+// 读取文件
+exports.readFile =  (fpath, encoding) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(fpath, encoding, (err, content) => {
+            err ? reject(err):resolve(content)
+        })
+    })
+}
+
+// 写入文件
+exports.writeFile =  (fpath, content) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fpath, content, (err) => {
+            err ? reject(err):resolve()
         })
     })
 }

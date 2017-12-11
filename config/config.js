@@ -46,6 +46,10 @@ var config = {
             createMenu:{
                 url : "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=",
                 method: 'POST'
+            },
+            getAccessToken:{
+                url : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx898f13df6bf0ea41&secret=7a7f135121318b6262020d37e37067f4",
+                method: "GET"
             }
         }
     },

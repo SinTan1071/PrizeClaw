@@ -3,6 +3,8 @@ const ejs = require('ejs')
 const heredoc = require('heredoc')
 const CONF = require('../config/config')
 const util = require('../common/util')
+const path = require('path')
+const accesstoken_file = path.join(__dirname, '../config/access_token.json')
 
 /**
  * <%if (msgType === 'text') {% >
@@ -55,4 +57,18 @@ exports.replyWechat = (msg) => {
     reply.fromUserName = toUserName
     console.log("最后响应消息的对象", reply)
     return kefu_compiled(reply)
+}
+
+// 微信获取access_token
+exports.getWechatAccessToken = async() => {
+    var now = new Date()
+// (now + 7000000)
+    var access_token = await util.readFile(accesstoken_file)
+    var data = JSON.parse(access_token)
+    console.log("获取到的access_token", data)
+if (!data || data.expires_in < now) {
+    var res = await util.request(CONF.wechat.api.getAccessToken.method, CONF.wechat.api.getAccessToken.url)
+    console.log("微信请求access_token结果", res)
+}
+return data.access_token
 }

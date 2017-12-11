@@ -31,8 +31,8 @@ app.use(views(__dirname + '/views', {extension: 'pug'}))
 // logger
 app.use(async(ctx, next) => {
     const start = new Date()
-    const ms = new Date() - start
     await next()
+    const ms = new Date() - start
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
     // try {
     //     await next()
