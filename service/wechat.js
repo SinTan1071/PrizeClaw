@@ -50,7 +50,8 @@ exports.replyWechat = (msg) => {
             
         //     break;
         default:
-            reply.msgType = 'transfer_customer_service'
+            reply.msgType = 'text'
+            // reply.msgType = 'transfer_customer_service'
             break;
     }
     reply.createTime = new Date().getTime()
