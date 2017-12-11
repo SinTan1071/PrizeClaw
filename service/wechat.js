@@ -1,6 +1,8 @@
 const Promise = require('bluebird')
 const ejs = require('ejs')
 const heredoc = require('heredoc')
+const CONF = require('../config/config')
+const util = require('../common/util')
 
 /**
  * <%if (msgType === 'text') {% >
