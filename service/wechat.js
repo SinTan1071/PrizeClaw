@@ -57,7 +57,7 @@ exports.replyWechat = (msg) => {
     reply.createTime = new Date().getTime()
     reply.toUserName = fromUserName
     reply.fromUserName = toUserName
-    reply.content = '您的留言已经收到，后台工作人员将尽快与您联系'
+    reply.content = '请您点击公众号右下角“问题反馈”按钮，给我们留言，工作人员将尽快给您回复'
     console.log("最后响应消息的对象", reply)
     return kefu_compiled(reply)
 }
@@ -80,4 +80,19 @@ exports.getWechatAccessToken = async() => {
         }
     }
     return data.access_token
+}
+
+// 根据open_id 获取用户信息
+exports.getWechatUserInfo = () => {
+
+}
+
+exports.getWechatOauthCodeUrl = (url) => {
+    var scope = 'snsapi_userinfo'
+    var oauth_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + CONF.wechat.appid + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + scope + '&state=oauth#wechat_redirect'
+    return oauth_url
+}
+
+exports.getWechatUserInfoByOauth = (code) => {
+    console.log("微信OAuth的code", code)
 }

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const ORM = require('./registDB')
 
-const Address = ORM.define('user', {
+const Address = ORM.define('address', {
     id: {
         type: Sequelize.INTEGER(255),
         primaryKey: true,

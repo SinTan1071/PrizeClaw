@@ -4,6 +4,7 @@ const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
+const cors = require('koa-cors')
 const logger = require('koa-logger')
 // const logUtil = require('./common/logger')
 
@@ -24,6 +25,7 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
+app.use(cors()) // 跨域问题
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {extension: 'pug'}))

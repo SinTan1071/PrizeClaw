@@ -56,6 +56,22 @@ exports.createMenu = async(ctx, next) => {
     console.log("创建菜单微信响应", res)
 }
 
+// 微信OAuth授权
+exports.oauthWechat = async(ctx, next) => {
+    var code = ctx.query.code
+    if(!code){
+        // 引导用户进入授权跳转页面
+        var current_url = ctx.origin + ctx.url
+        console.log("当前的url", current_url)
+        var jump_url = service.getWechatOauthCodeUrl(current_url)
+        ctx.redirect(jump_url)
+    }else{
+        // 拿到code后获取用户信息
+        service.getWechatUserInfoByOauth(code)
+    }
+    return
+}
+
 // 微信消息推送
 exports.sendMsg = async(ctx, next) => {
     let url = 'https://api.douban.com/v2/movie/subject/26761416'

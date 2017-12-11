@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const ORM = require('./registDB')
 
-const CoinFlow = ORM.define('user', {
+const CoinFlow = ORM.define('coinflow', {
     id: {
         type: Sequelize.INTEGER(255),
         primaryKey: true,

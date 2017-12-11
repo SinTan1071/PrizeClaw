@@ -11,8 +11,6 @@ router.get('/bar', (ctx, next) => {
   ctx.body = 'this is a users/bar response'
 })
 
-router.get('/index', userCtr.index)
-router.get('/create', userCtr.create)
-router.get('/update', userCtr.update)
+router.get('/account', userCtr.getUserInfo)
 
 module.exports = router
