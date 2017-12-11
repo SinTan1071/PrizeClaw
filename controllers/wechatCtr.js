@@ -61,7 +61,7 @@ exports.oauthWechat = async(ctx, next) => {
     var code = ctx.query.code
     if(!code){
         // 引导用户进入授权跳转页面
-        var current_url = ctx.origin + ctx.url
+        var current_url = CONF.wechat.domain + ctx.url
         console.log("当前的url", current_url)
         var jump_url = service.getWechatOauthCodeUrl(current_url)
         ctx.redirect(jump_url)
