@@ -6,5 +6,6 @@ router.prefix('/wechat')
 
 router.all('/', wechatCtr.index)
 router.get('/test', wechatCtr.sendMsg)
+router.get('/menu', wechatCtr.createMenu)
 
 module.exports = router
