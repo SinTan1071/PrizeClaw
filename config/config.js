@@ -1,40 +1,22 @@
 var config = {
     wechat: {
         token : "sintan1071",
-        appid : "wx898f13df6bf0ea41",
-        secret : "7a7f135121318b6262020d37e37067f4",
+        appid : "wx68fe32050b5e5430",
+        secret : "10176907464fca58cf293e48157a3017",
         menu : {
             "button" : [
                 {
-                    "name": "抓手机",
+                    "name": "赢手机",
                     "type":"view",
-                    "url":"www.baidu.com",
-                    // "sub_button": [
-                    //     {
-                    //         "type": "pic_sysphoto",
-                    //         "name": "系统拍照发图",
-                    //         "key": "rselfmenu_1_0",
-                    //         "sub_button": []
-                    //     }, {
-                    //         "type": "pic_photo_or_album",
-                    //         "name": "拍照或者相册发图",
-                    //         "key": "rselfmenu_1_1",
-                    //         "sub_button": []
-                    //     }, {
-                    //         "type": "pic_weixin",
-                    //         "name": "微信相册发图",
-                    //         "key": "rselfmenu_1_2",
-                    //         "sub_button": []
-                    //     }
-                    // ]
+                    "url":"http://www.baidu.com"
                 }, {
                     "name": "赚金币",
                     "type" : "view",
-                    "url" : "www.qq.com",
+                    "url" : "http://www.qq.com"
                 }, {
-                    "name": "客服",
-                    "type": "click",
-                    "key": "NEED_KEFU"
+                    "name": "问题反馈",
+                    "type": "view",
+                    "url": "http://www.jd.com"
                 }
             ]
         },
@@ -48,7 +30,7 @@ var config = {
                 method: 'POST'
             },
             getAccessToken:{
-                url : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx898f13df6bf0ea41&secret=7a7f135121318b6262020d37e37067f4",
+                url : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx68fe32050b5e5430&secret=10176907464fca58cf293e48157a3017",
                 method: "GET"
             }
         }

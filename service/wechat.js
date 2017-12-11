@@ -18,7 +18,8 @@ var kefu_tpl = heredoc(function() {
     <xml>
 	    <ToUserName><![CDATA[<%= toUserName %>]]></ToUserName>
 	    <FromUserName><![CDATA[<%= fromUserName %>]]></FromUserName>
-	    <CreateTime><%= createTime %></CreateTime>
+        <CreateTime><%= createTime %></CreateTime>
+        <Content><![CDATA[<%= content %>]]></Content>
 	    <MsgType><![CDATA[<%= msgType %>]]></MsgType>
     </xml>
     */
@@ -55,20 +56,27 @@ exports.replyWechat = (msg) => {
     reply.createTime = new Date().getTime()
     reply.toUserName = fromUserName
     reply.fromUserName = toUserName
+    reply.content = '您的留言已经收到，后台工作人员将尽快与您联系'
     console.log("最后响应消息的对象", reply)
     return kefu_compiled(reply)
 }
 
 // 微信获取access_token
 exports.getWechatAccessToken = async() => {
-    var now = new Date()
-// (now + 7000000)
+    var timestamp = util.getTimeStamp()
     var access_token = await util.readFile(accesstoken_file)
     var data = JSON.parse(access_token)
-    console.log("获取到的access_token", data)
-if (!data || data.expires_in < now) {
-    var res = await util.request(CONF.wechat.api.getAccessToken.method, CONF.wechat.api.getAccessToken.url)
-    console.log("微信请求access_token结果", res)
-}
-return data.access_token
+    console.log("获取到的文件JSON解析", data)
+    if (!data || data.expires_in < timestamp) {
+        var res = await util.request(CONF.wechat.api.getAccessToken.method, CONF.wechat.api.getAccessToken.url)
+        console.log("微信请求access_token结果", res)
+        if (res.access_token){
+            res.expires_in = timestamp + (res.expires_in - 30) * 1000
+            var str_data = JSON.stringify(res)
+            util.writeFile(accesstoken_file, str_data).then(()=>{
+                return res.access_token
+            })
+        }
+    }
+    return data.access_token
 }

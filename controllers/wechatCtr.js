@@ -50,9 +50,10 @@ exports.index = async (ctx, next) => {
 
 // 微信创建新菜单
 exports.createMenu = async(ctx, next) => {
-    service.getWechatAccessToken()
-    // var res = await util.request(CONF.wechat.api.createMenu.method, CONF.wechat.api.createMenu.url, menu)
-    // console.log("创建菜单微信响应", res)
+    var access_token = await service.getWechatAccessToken()
+    console.log("access_token", access_token)
+    var res = await util.request(CONF.wechat.api.createMenu.method, CONF.wechat.api.createMenu.url + access_token, CONF.wechat.menu)
+    console.log("创建菜单微信响应", res)
 }
 
 // 微信消息推送
