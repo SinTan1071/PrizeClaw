@@ -29,10 +29,19 @@ exports.index = async (ctx, next) => {
         if (local_sign == signature) {
             var xml = await service.getWechatXml(ctx.req)
             console.log("请求的XML", xml)
+// debug
+// xml = `<xml><ToUserName><![CDATA[gh_b1d145b7e9ab]]></ToUserName>
+// <FromUserName><![CDATA[oK4rH0WURv1jB0U-bKulA4CJZt4c]]></FromUserName>
+// <CreateTime>1512891804</CreateTime>
+// <MsgType><![CDATA[text]]></MsgType>
+// <Content><![CDATA[哦里木空]]></Content>
+// <MsgId>6497820821232246426</MsgId>
+// </xml>`
             var wechat_msg = await util.xmlToJson(xml)
             console.log("最终请求的结果", wechat_msg)
-
-            // ctx.body = msg
+            var server_msg = service.replyWechat(wechat_msg.xml)
+            console.log("响应的结果", server_msg)
+            ctx.body = server_msg
         } else {
             ctx.body = "错误"
         }
