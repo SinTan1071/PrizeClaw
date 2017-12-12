@@ -7,6 +7,20 @@ function generateUserToken() {
     return uuid.v1().replace(/-/g, "")
 }
 
+// 根据微信openid检测用户是否存在
+exports.isUserExitByWechatId = (openid) => {
+    var query = {
+        where:{
+            wechat_openid:openid
+        }
+    }
+    crudService.readMod(userMod, query).then(()=>{
+        return true
+    }).catch(err=>{
+        return false
+    })
+}
+
 exports.createWechatUser = async(userinfo, parent_invite_token) => {
     var user = {
         nick_name : userinfo.nickname,
