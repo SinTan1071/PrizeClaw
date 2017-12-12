@@ -1,11 +1,11 @@
 var config = {
+    index_page:"http://view.kikofeier.com",
     wechat: {
         token : "sintan1071",
         appid : "wx68fe32050b5e5430",
         secret : "10176907464fca58cf293e48157a3017",
         domain : "http://api.kikofeier.com",
         admin : "oK4rH0UITk8mXBNWYeqN6uHvWdqg", // 贝武的open_id
-        oauth_url : "TODO",
         menu : {
             "button" : [
                 {
