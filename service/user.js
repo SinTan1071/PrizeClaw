@@ -21,6 +21,7 @@ exports.createWechatUser = (userinfo, inviter_openid) => {
     var user = {
         nick_name : userinfo.nickname,
         wechat_openid : userinfo.openid,
+        head_img : userinfo.headimgurl,
         auth_status : CONF.status.user.auth.UNAUTH,
         inviter_openid : inviter_openid,
         token : generateUserToken(),

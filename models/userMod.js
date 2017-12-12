@@ -13,6 +13,7 @@ const User = ORM.define('user', {
         id_card: Sequelize.STRING,
         real_name: Sequelize.STRING,
         auth_status: Sequelize.INTEGER(11).UNSIGNED,
+        head_img : Sequelize.STRING,
         // invite_token: Sequelize.STRING,
         // parent_invite_token : Sequelize.STRING,
         inviter_openid : Sequelize.STRING,
