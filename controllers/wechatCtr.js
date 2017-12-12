@@ -71,18 +71,16 @@ exports.oauthWechat = async(ctx, next) => {
         var wechat_userinfo = await wechatService.getWechatUserInfoByOauth(code)
         if (wechat_userinfo && wechat_userinfo.openid){
         var user = await userService.getUserByWechatId(wechat_userinfo.openid)
-        console.log("获取到user", user.wechat_openid)
+        console.log("获取到user", user)
         if (user && user.wechat_openid)
             var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user)).toString('base64'))
-            console.log("跳转地址1", index_url)
         }else{
             var new_user = await userService.createWechatUser(wechat_userinfo)
             if (new_user && new_user.wechat_openid) {
                 var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(new_user)).toString('base64'))
-                console.log("跳转地址2", index_url)
             }
         }
-        console.log("跳转地址3", index_url)
+        console.log("跳转地址", index_url)
         ctx.redirect(index_url)
     }
     return
