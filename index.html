@@ -11,10 +11,12 @@
     <script>
         $(function () {
            // 调用方法 
-            var userinfo = GetQueryString("userinfo")
+            var userinfo = GetQueryString("data")
             if(!userinfo){
                 window.location = "http://api.kikofeier.com/wechat/auth"
-            } 
+            }else{
+                console.log("用户信息", userinfo)
+            }
         })
         function GetQueryString(name)
         {
