@@ -93,6 +93,15 @@ exports.getWechatOauthCodeUrl = (url) => {
     return oauth_url
 }
 
-exports.getWechatUserInfoByOauth = (code) => {
+exports.getWechatUserInfoByOauth = async(code) => {
     console.log("微信OAuth的code", code)
+    var access_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+ CONF.wechat.appid +'&secret='+ CONF.wechat.secret +'&code='+ code +'&grant_type=authorization_code'
+    var res = await util.request('GET', access_token_url)
+    console.log("微信OAuth的access_token", res)
+    var data = JSON.parse(res)
+    if(data.access_token){
+        var userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token="+ data.access_token +"&openid="+ data.openid +"&lang=zh_CN"
+        var res = await util.request('GET', userinfo_url)
+        console.log("微信授权用户信息", res)
+    }
 }
