@@ -27,6 +27,6 @@ exports.createWechatUser = async(userinfo, inviter_openid) => {
         coin : 0
     }
     crudService.createMod(userMod, user).then(()=>{
-        return user
+        return Promise.resolve(user)
     })
 }
