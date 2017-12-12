@@ -76,6 +76,7 @@ exports.oauthWechat = async(ctx, next) => {
             var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user)).toString('base64'))
         }else{
             var new_user = await userService.createWechatUser(wechat_userinfo)
+            console.log("怎么回事", new_user)
             if (new_user && new_user.wechat_openid) {
                 var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(new_user)).toString('base64'))
             }
