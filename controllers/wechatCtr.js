@@ -78,6 +78,7 @@ exports.oauthWechat = async(ctx, next) => {
                 var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(new_user)).toString('base64'))
                 console.log("跳转地址1", index_url)
             }
+            console.log("为什么在这里？？？")
         }else{
             var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user)).toString('base64'))
             console.log("跳转地址2", index_url)
