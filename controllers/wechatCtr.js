@@ -1,6 +1,7 @@
 const CONF = require('../config/config')
 const util = require('../common/util')
-const service = require('../service/wechat')
+const wechatService = require('../service/wechat')
+const userService = require('../service/user')
 
 // 微信接入
 exports.index = async (ctx, next) => {
@@ -27,7 +28,7 @@ exports.index = async (ctx, next) => {
         }
     }else{
         if (local_sign == signature) {
-            var xml = await service.getWechatXml(ctx.req)
+            var xml = await wechatService.getWechatXml(ctx.req)
             console.log("请求的XML", xml)
 // debug
 // xml = `<xml><ToUserName><![CDATA[gh_b1d145b7e9ab]]></ToUserName>
@@ -39,7 +40,7 @@ exports.index = async (ctx, next) => {
 // </xml>`
             var wechat_msg = await util.xmlToJson(xml)
             console.log("最终请求的结果", wechat_msg)
-            var server_msg = service.replyWechat(wechat_msg.xml)
+            var server_msg = wechatService.replyWechat(wechat_msg.xml)
             console.log("响应的结果", server_msg)
             ctx.body = server_msg
         } else {
@@ -50,7 +51,7 @@ exports.index = async (ctx, next) => {
 
 // 微信创建新菜单
 exports.createMenu = async(ctx, next) => {
-    var access_token = await service.getWechatAccessToken()
+    var access_token = await wechatService.getWechatAccessToken()
     console.log("access_token", access_token)
     var res = await util.request(CONF.wechat.api.createMenu.method, CONF.wechat.api.createMenu.url + access_token, CONF.wechat.menu)
     console.log("创建菜单微信响应", res)
@@ -63,13 +64,13 @@ exports.oauthWechat = async(ctx, next) => {
         // 引导用户进入授权跳转页面
         var current_url = CONF.wechat.domain + ctx.url
         console.log("当前的url", current_url)
-        var jump_url = service.getWechatOauthCodeUrl(current_url)
+        var jump_url = wechatService.getWechatOauthCodeUrl(current_url)
         ctx.redirect(jump_url)
     }else{
         // 拿到code后获取用户信息
-        var wechat_userinfo = await service.getWechatUserInfoByOauth(code)
+        var wechat_userinfo = await wechatService.getWechatUserInfoByOauth(code)
         if (wechat_userinfo && wechat_userinfo.openid){
-            var res = await service.createWechatUser(wechat_userinfo)
+            var res = await userService.createWechatUser(wechat_userinfo)
         }
     }
     return
