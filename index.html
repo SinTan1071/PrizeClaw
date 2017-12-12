@@ -16,6 +16,7 @@
             if(!data){
                 window.location = "http://api.kikofeier.com/wechat/auth"
             }else{
+                alert("有数据")
                 var userinfo = JSON.parse(new Buffer(data, 'base64').toString())
                 alert("用户信息", userinfo.wechat_openid)
             }
