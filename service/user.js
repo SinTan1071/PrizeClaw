@@ -18,7 +18,7 @@ exports.getUserByWechatId = (openid) => {
     return crudService.readMod(userMod, query)
 }
 
-exports.createWechatUser = async(userinfo, inviter_openid) => {
+exports.createWechatUser = (userinfo, inviter_openid) => {
     var user = {
         nick_name : userinfo.nickname,
         wechat_openid : userinfo.openid,
@@ -29,6 +29,9 @@ exports.createWechatUser = async(userinfo, inviter_openid) => {
         coin : 0
     }
     console.log("保存用户", user)
-    await crudService.createMod(userMod, user)
-    return user
+    return crudService.createMod(userMod, user).then(()=>{
+        resolve(user)
+    }).catch(err=>{
+        reject(err)
+    })
 }
