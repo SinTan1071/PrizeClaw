@@ -12,12 +12,13 @@
         $(function () {
            // 调用方法 
             var data = GetQueryString("data")
-            if(!data){
-                window.location = "http://api.kikofeier.com/wechat/auth"
-            }else{
-                var userinfo = JSON.parse(new Buffer(data, 'base64').toString())
-                alert("用户信息", userinfo.wechat_openid)
-            }
+            alert("数据", data)
+            // if(!data){
+            //     window.location = "http://api.kikofeier.com/wechat/auth"
+            // }else{
+            //     var userinfo = JSON.parse(new Buffer(data, 'base64').toString())
+            //     alert("用户信息", userinfo.wechat_openid)
+            // }
         })
         function GetQueryString(name)
         {
