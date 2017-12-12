@@ -3,8 +3,8 @@ exports.readMod = (mod, query) => {
     return new Promise((resolve, reject)=>{
         mod
             .findOne(query)
-            .then(user => {
-                resolve(user)
+            .then(result => {
+                resolve(result)
             })
             .catch(err => {
                 reject(err)
@@ -16,8 +16,8 @@ exports.readAllMod = (mod, query) => {
     return new Promise((resolve, reject) => {
         mod
             .findAll(query)
-            .then(users => {
-                resolve(users)
+            .then(results => {
+                resolve(results)
             })
             .catch(err => {
                 reject(err)
@@ -25,10 +25,10 @@ exports.readAllMod = (mod, query) => {
     })
 }
 
-exports.createMod = (mod, user) => {
+exports.createMod = (mod, data) => {
     return new Promise((resolve, reject) => {
         mod
-            .create(user)
+            .create(data)
             .then((res) => {
                 resolve(res)
             })

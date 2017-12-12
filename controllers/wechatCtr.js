@@ -67,7 +67,10 @@ exports.oauthWechat = async(ctx, next) => {
         ctx.redirect(jump_url)
     }else{
         // 拿到code后获取用户信息
-        var wechat_userinfo = service.getWechatUserInfoByOauth(code)
+        var wechat_userinfo = await service.getWechatUserInfoByOauth(code)
+        if (wechat_userinfo && wechat_userinfo.openid){
+            var res = await service.createWechatUser(wechat_userinfo)
+        }
     }
     return
 }

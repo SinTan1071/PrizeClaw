@@ -43,6 +43,15 @@ var config = {
         username: 'root',
         password: '123456',
         host: 'localhost',
+    },
+    status:{
+        user:{
+            auth:{
+                UNAUTH:0,
+                AUTHED:1,
+                AUTHFAIL:2
+            }
+        }
     }
 }
 
