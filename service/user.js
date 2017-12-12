@@ -2,6 +2,7 @@ const crudService = require('./crud')
 const userMod = require('../models/userMod')
 const uuid = require('node-uuid')
 const CONF = require('../config/config')
+const Promise = require('bluebird')
 
 function generateUserToken() {
     return uuid.v1().replace(/-/g, "")
@@ -29,5 +30,8 @@ exports.createWechatUser = (userinfo, inviter_openid) => {
     }
     crudService.createMod(userMod, user).then(()=>{
         return Promise.resolve(user)
+    }).catch(err=>{
+        return Promise.reject(err)
     })
+    
 }
