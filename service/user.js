@@ -30,8 +30,8 @@ exports.createWechatUser = (userinfo, inviter_openid) => {
     }
     console.log("保存用户", user)
     return crudService.createMod(userMod, user).then(()=>{
-        resolve(user)
+        Promise.resolve(user)
     }).catch(err=>{
-        reject(err)
+        Promise.reject(err)
     })
 }
