@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta name="" content="">
+    </head>
+    <body>
+        <div id="user">
+            user:
+        </div>
+    </body>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+           // 调用方法 
+            var userinfo = GetQueryString("userinfo")
+            if(!userinfo){
+                window.location = "http://api.kikofeier.com/wechat/auth"
+            } 
+        })
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+        
+    </script>
+</html>
