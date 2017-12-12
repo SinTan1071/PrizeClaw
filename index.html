@@ -3,8 +3,8 @@
         <meta charset="UTF-8" name="" content="">
     </head>
     <body>
-        <div id="user">
-            user:
+        <div id="user" >
+            
         </div>
     </body>
     <script src="./jquery-3.2.1.min.js"></script>
@@ -19,7 +19,8 @@
                 alert("有数据"+data)
                 var base64 = new Base64()
                 var userinfo = JSON.parse(base64.decode(data))
-                alert(userinfo.wechat_openid)
+                var img = `<img src="${userinfo.head_img}" alt="" style="width:500px;height:500px;">`
+                $("#user").append(img)
             }
         })
         function GetQueryString(name)
