@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="" content="">
+        <meta charset="UTF-8" name="" content="">
     </head>
     <body>
         <div id="user">
@@ -13,12 +13,12 @@
            // 调用方法 
             var data = GetQueryString("data")
             alert("数据", data)
-            // if(!data){
-            //     window.location = "http://api.kikofeier.com/wechat/auth"
-            // }else{
-            //     var userinfo = JSON.parse(new Buffer(data, 'base64').toString())
-            //     alert("用户信息", userinfo.wechat_openid)
-            // }
+            if(!data){
+                window.location = "http://api.kikofeier.com/wechat/auth"
+            }else{
+                var userinfo = JSON.parse(new Buffer(data, 'base64').toString())
+                alert("用户信息", userinfo.wechat_openid)
+            }
         })
         function GetQueryString(name)
         {
