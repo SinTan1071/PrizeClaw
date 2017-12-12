@@ -29,7 +29,7 @@ exports.createWechatUser = (userinfo, inviter_openid) => {
         coin : 0
     }
     console.log("保存用户", user)
-    crudService.createMod(userMod, user).then(()=>{
+    return crudService.createMod(userMod, user).then(()=>{
         return Promise.resolve(user)
     }).catch(err=>{
         return Promise.reject(err)
