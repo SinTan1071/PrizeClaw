@@ -8,6 +8,7 @@
         </div>
     </body>
     <script src="./jquery-3.2.1.min.js"></script>
+    <script src="./base64.js"></script>
     <script>
         $(function () {
            // 调用方法 
@@ -16,8 +17,9 @@
                 window.location = "http://api.kikofeier.com/wechat/auth"
             }else{
                 alert("有数据"+data)
-                var userinfo = new Buffer(data, 'base64').toString()
-                alert(userinfo)
+                var base64 = new Base64()
+                var userinfo = JSON.parse(base64.decode(data))
+                alert(userinfo.wechat_openid)
             }
         })
         function GetQueryString(name)
