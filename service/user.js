@@ -28,10 +28,10 @@ exports.createWechatUser = (userinfo, inviter_openid) => {
         token : generateUserToken(),
         coin : 0
     }
-    crudService.createMod(userMod, user).then(()=>{
-        return Promise.resolve(user)
+    return crudService.createMod(userMod, user).then(()=>{
+        resolve(user)
     }).catch(err=>{
-        return Promise.reject(err)
+        reject(err)
     })
     
 }
