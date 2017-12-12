@@ -71,7 +71,7 @@ exports.oauthWechat = async(ctx, next) => {
         var wechat_userinfo = await wechatService.getWechatUserInfoByOauth(code)
         if (wechat_userinfo && wechat_userinfo.openid){
         var user = await userService.getUserByWechatId(wechat_userinfo.openid)
-        console.log("获取到user", user)
+        console.log("获取到user", user.wechat_openid)
         if (!user || !user.wechat_openid)
             var new_user = await userService.createWechatUser(wechat_userinfo)
             if (new_user && new_user.wechat_openid){
