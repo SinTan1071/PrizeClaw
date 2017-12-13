@@ -109,7 +109,7 @@ exports.getWechatUserInfoByOauth = async(code) => {
 
 // 获取创建永久二维码ticket
 exports.getWechatQrcodeTicket = async(openid) => {
-    var access_token = this.getWechatAccessToken()
+    var access_token = await this.getWechatAccessToken()
     console.log("不知道这个token过期了吗", access_token)
     var opt = {
         "action_name": "INVITE",
