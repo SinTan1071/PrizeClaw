@@ -118,5 +118,5 @@ exports.getWechatQrcodeTicket = async(openid) => {
         }
     }
     var res = await util.request(CONF.wechat.api.getQrcodeTicket.method, CONF.wechat.api.getQrcodeTicket.url, opt)
-    console.log("生成二维码", res)
+    return res
 }

@@ -1,4 +1,5 @@
 const crudService = require('./crud')
+const wechatService = require('./wechat')
 const userMod = require('../models/userMod')
 const uuid = require('node-uuid')
 const CONF = require('../config/config')
@@ -29,12 +30,19 @@ exports.getUserByToken = (token) => {
 }
 
 exports.createWechatUser = (userinfo, inviter_openid) => {
+    var qr_code = await wechatService.getWechatQrcodeTicket(userinfo.openid)
+    console.log("二维码", qr_code)
+    var invite_code = ''
+    if (qr_code && qr_code.url){
+        invite_code = qr_code.url
+    }
     var user = {
         nick_name : userinfo.nickname,
         wechat_openid : userinfo.openid,
         head_img : userinfo.headimgurl,
         auth_status : CONF.status.user.auth.UNAUTH,
         inviter_openid : inviter_openid,
+        invite_code : invite_code,
         token : generateUserToken(),
         coin : 0
     }
