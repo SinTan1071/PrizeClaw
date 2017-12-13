@@ -7,7 +7,7 @@ const CONF = require('../config/config')
 
 var token_check = async(ctx, next) => {
     //如果有返回数据，将返回数据添加到data中
-    console.log("访问的url", ctx.url)
+    console.log("访问的url", ctx.path)
     if (ctx.query.token) {
         //后执行路由
         var user = await userService.getUserByToken(ctx.query.token)
@@ -18,7 +18,7 @@ var token_check = async(ctx, next) => {
             ctx.body = "不存在该用户"
             return
         }
-    } else if (util.inArray(ctx.url, CONF.ignore_url)) {
+    } else if (util.inArray(ctx.path, CONF.ignore_url)) {
         await next()
     } else {
         ctx.body = "无权限"
