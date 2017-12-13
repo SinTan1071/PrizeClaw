@@ -18,6 +18,16 @@ exports.getUserByWechatId = (openid) => {
     return crudService.readMod(userMod, query)
 }
 
+// 根据token获取用户信息
+exports.getUserByToken = (token) => {
+    var query = {
+        where: {
+            token : token
+        }
+    }
+    return crudService.readMod(userMod, query)
+}
+
 exports.createWechatUser = (userinfo, inviter_openid) => {
     var user = {
         nick_name : userinfo.nickname,
@@ -31,7 +41,29 @@ exports.createWechatUser = (userinfo, inviter_openid) => {
     console.log("保存用户", user)
     return crudService.createMod(userMod, user).then(()=>{
         return Promise.resolve(user)
-    }).catch(err=>{
+    }).catch(err => {
+        return Promise.reject(err)
+    })
+}
+
+// 获取用户邀请的好友列表
+exports.getUserFriends = (openid) => {
+    var query = {
+        where: {
+            inviter_openid: openid
+        }
+    }
+    return crudService.readAllMod(userMod, query).then(users => {
+        var friends = []
+        for (var i = 0, user; user = users[i++];) {
+            var friend = {
+                nick_name: user.nick_name,
+                head_img: user.head_img
+            }
+            friends.push(friend)
+        }
+        return Promise.resolve(friends)
+    }).catch(err => {
         return Promise.reject(err)
     })
 }

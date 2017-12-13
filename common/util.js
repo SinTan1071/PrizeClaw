@@ -43,6 +43,17 @@ exports.getTimeStamp = () => {
     return timestamp
 }
 
+// 判断一个值是否在数组里
+exports.inArray = (string, array) => {
+    for (i = 0; i < array.length; i++) {
+        let entry = array[i].toString()
+        if (entry == string) {
+            return true
+        }
+    }
+    return false
+}
+
 // 发起一个promise化的http请求
 exports.request = (method, url, data, headers) => {
     var opt = {
@@ -59,6 +70,15 @@ exports.request = (method, url, data, headers) => {
     }).catch(err => {
         return Promise.reject(err)
     })
+}
+
+// 客户端响应方法
+exports.response = (code, message, data) => {
+    return {
+        code : code,
+        message : message,
+        data: data
+    }
 }
 
 // 把一端xml数据转化成JSON

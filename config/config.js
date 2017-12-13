@@ -1,5 +1,11 @@
 var config = {
     index_page:"http://view.kikofeier.com",
+    ignore_url:[
+        '/',
+        '/string',
+        '/json',
+        '/wechat/auth'
+    ],
     wechat: {
         token : "sintan1071",
         appid : "wx68fe32050b5e5430",
@@ -35,6 +41,10 @@ var config = {
             getAccessToken:{
                 url : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx68fe32050b5e5430&secret=10176907464fca58cf293e48157a3017",
                 method: "GET"
+            },
+            getQrcodeTicket : {
+                url : "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=",
+                method: "POST"
             }
         }
     },

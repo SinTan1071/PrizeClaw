@@ -6,6 +6,8 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const cors = require('koa-cors')
 const logger = require('koa-logger')
+const token_check = require('./middlewares/token_check')
+// const response_formatter = require('./middlewares/response_formatter');
 // const logUtil = require('./common/logger')
 
 // 模型注册
@@ -26,6 +28,8 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(cors()) // 跨域问题
+// app.use(response_formatter)
+app.use(token_check)
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {extension: 'pug'}))

@@ -106,3 +106,17 @@ exports.getWechatUserInfoByOauth = async(code) => {
     }
     return
 }
+
+// 获取创建永久二维码ticket
+exports.getWechatQrcodeTicket = async(openid) => {
+    var opt = {
+        "action_name": "INVITE",
+        "action_info": {
+            "scene": {
+                "scene_str": openid
+            }
+        }
+    }
+    var res = await util.request(CONF.wechat.api.getQrcodeTicket.method, CONF.wechat.api.getQrcodeTicket.url, opt)
+    console.log("生成二维码", res)
+}
