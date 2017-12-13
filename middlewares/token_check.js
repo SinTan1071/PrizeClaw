@@ -7,6 +7,7 @@ const CONF = require('../config/config')
 
 var token_check = async(ctx, next) => {
     //如果有返回数据，将返回数据添加到data中
+    console.log("访问的url", ctx.url)
     if (ctx.query.token) {
         //后执行路由
         var user = await userService.getUserByToken(ctx.query.token)
