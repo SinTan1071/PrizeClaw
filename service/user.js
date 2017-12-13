@@ -29,7 +29,7 @@ exports.getUserByToken = (token) => {
     return crudService.readMod(userMod, query)
 }
 
-exports.createWechatUser = (userinfo, inviter_openid) => {
+exports.createWechatUser = async(userinfo, inviter_openid) => {
     var qr_code = await wechatService.getWechatQrcodeTicket(userinfo.openid)
     console.log("二维码", qr_code)
     var invite_code = ''
