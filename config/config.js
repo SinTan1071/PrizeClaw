@@ -4,6 +4,7 @@ var config = {
         '/',
         '/string',
         '/json',
+        '/wechat',
         '/wechat/auth'
     ],
     wechat: {
