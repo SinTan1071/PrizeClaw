@@ -53,17 +53,18 @@ exports.replyWechat = async(msg) => {
                 case 'subscribe' :
                     var wechat_userinfo = await that.getWechatUserInfo(msg.FromUserName)
                     if (wechat_userinfo && wechat_userinfo.openid) {
-                        var user = await userService.getUserByWechatId(wechat_userinfo.openid, msg.EventKey)
+                        var user = await userService.getUserByWechatId(wechat_userinfo.openid)
                         console.log("获取到user", user)
                         if (!user || !user.id) {
-                            await userService.createWechatUser(wechat_userinfo)
+                            await userService.createWechatUser(wechat_userinfo, msg.EventKey)
                         }
                     }
+                    reply.content = '欢迎关注！我们等你很久了' + wechat_userinfo.nickname + '，快来赢取大奖吧！！！'
                 break;
                 default:
-                    break;
+                    reply.content = '请您点击公众号右下角“问题反馈”按钮，给我们留言，工作人员将尽快给您回复'
+                break;
             }
-            reply.content = '欢迎关注！我们等你很久了' + wechat_userinfo.nickname + '，快来赢取大奖吧！！！'
             break;
         default:
             reply.content = '请您点击公众号右下角“问题反馈”按钮，给我们留言，工作人员将尽快给您回复'
