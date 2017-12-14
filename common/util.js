@@ -59,7 +59,7 @@ exports.request = (method, url, data, headers) => {
     var opt = {
         method : method,
         url : url,
-        // json : true,
+        json : true,
         // body : JSON.stringify(data),
         body : data,
         headers : headers
