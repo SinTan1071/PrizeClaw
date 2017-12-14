@@ -118,6 +118,7 @@ exports.getWechatQrcodeTicket = async(openid) => {
             }
         }
     }
+    console.log("奇奇怪怪的问题", JSON.stringify(opt))
     var res = await util.request(CONF.wechat.api.getQrcodeTicket.method, CONF.wechat.api.getQrcodeTicket.url + access_token, opt)
     return res
 }
