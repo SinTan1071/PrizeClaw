@@ -74,8 +74,8 @@ exports.getWechatAccessToken = async() => {
         if (res.access_token){
             res.expires_in = timestamp + (res.expires_in - 30) * 1000
             var str_data = JSON.stringify(res)
-            util.writeFile(accesstoken_file, str_data).then(()=>{
-                return res.access_token
+            return util.writeFile(accesstoken_file, str_data).then(()=>{
+                return Promise.resolve(res.access_token)
             })
         }
     }
