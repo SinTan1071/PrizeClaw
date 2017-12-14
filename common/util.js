@@ -59,8 +59,9 @@ exports.request = (method, url, data, headers) => {
     var opt = {
         method : method,
         url : url,
-        json : true,
-        body : JSON.stringify(data),
+        // json : true,
+        // body : JSON.stringify(data),
+        body : data,
         headers : headers
     }
     return request(opt).then((response) => {
