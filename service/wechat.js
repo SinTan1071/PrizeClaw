@@ -114,7 +114,7 @@ exports.getWechatQrcodeTicket = async(openid) => {
         "action_name" : "QR_LIMIT_STR_SCENE",
         "action_info": {
             "scene": {
-                "scene_str": openid
+                "scene_str": "openid"
             }
         }
     }
