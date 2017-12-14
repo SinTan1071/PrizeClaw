@@ -111,10 +111,10 @@ exports.getWechatUserInfoByOauth = async(code) => {
 exports.getWechatQrcodeTicket = async(openid) => {
     var access_token = await this.getWechatAccessToken()
     var opt = {
-        "action_name" : "QR_LIMIT_STR_SCENE",
-        "action_info": {
-            "scene": {
-                "scene_str": "openid"
+        action_name : "QR_LIMIT_STR_SCENE",
+        action_info: {
+            scene: {
+                scene_str: openid
             }
         }
     }
