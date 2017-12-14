@@ -52,11 +52,12 @@ exports.replyWechat = async(msg) => {
             switch (msg.Event) {
                 case 'subscribe' :
                     var wechat_userinfo = await that.getWechatUserInfo(msg.FromUserName)
+                    console.log("关注时候的user", wechat_userinfo)
                     if (wechat_userinfo && wechat_userinfo.openid) {
                         var user = await userService.getUserByWechatId(wechat_userinfo.openid)
-                        console.log("获取到user", user)
+                        console.log("关注时候获取到user", user)
                         if (!user || !user.id) {
-                            await userService.createWechatUser(wechat_userinfo, msg.EventKey)
+                            await userService.createWechatUser(wechat_userinfo, (msg.EventKey).substring(8))
                         }
                     }
                     reply.content = '欢迎关注！我们等你很久了' + wechat_userinfo.nickname + '，快来赢取大奖吧！！！'
