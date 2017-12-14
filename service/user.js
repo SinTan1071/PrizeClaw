@@ -33,8 +33,8 @@ exports.createWechatUser = async(userinfo, inviter_openid) => {
     var qr_code = await wechatService.getWechatQrcodeTicket(userinfo.openid)
     console.log("二维码", qr_code)
     var invite_code = ''
-    if (qr_code && qr_code.url){
-        invite_code = qr_code.url
+    if (qr_code && qr_code.ticket){
+        invite_code = qr_code.ticket
     }
     var user = {
         nick_name : userinfo.nickname,
