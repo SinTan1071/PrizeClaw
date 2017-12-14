@@ -4,6 +4,7 @@ const heredoc = require('heredoc')
 const CONF = require('../config/config')
 const util = require('../common/util')
 const path = require('path')
+const userService = require('./user')
 const accesstoken_file = path.join(__dirname, '../config/access_token.json')
 
 /**
@@ -41,23 +42,38 @@ exports.getWechatXml = (content) => {
 }
 
 // 响应微信服务器方法
-exports.replyWechat = (msg) => {
+exports.replyWechat = async(msg) => {
+    var that = this
     var reply = {}
     var fromUserName = msg.FromUserName
     var toUserName = msg.ToUserName
     switch (msg.MsgType) {
-        // case value:
-            
-        //     break;
+        case "event":
+            switch (msg.Event) {
+                case 'subscribe' :
+                    var wechat_userinfo = await that.getWechatUserInfo(msg.FromUserName)
+                    if (wechat_userinfo && wechat_userinfo.openid) {
+                        var user = await userService.getUserByWechatId(wechat_userinfo.openid, msg.EventKey)
+                        console.log("获取到user", user)
+                        if (!user || !user.id) {
+                            await userService.createWechatUser(wechat_userinfo)
+                        }
+                    }
+                break;
+                default:
+                    break;
+            }
+            reply.content = '欢迎关注！我们等你很久了' + wechat_userinfo.nickname + '，快来赢取大奖吧！！！'
+            break;
         default:
-            reply.msgType = 'text'
+            reply.content = '请您点击公众号右下角“问题反馈”按钮，给我们留言，工作人员将尽快给您回复'
             // reply.msgType = 'transfer_customer_service'
             break;
     }
     reply.createTime = new Date().getTime()
     reply.toUserName = fromUserName
     reply.fromUserName = toUserName
-    reply.content = '请您点击公众号右下角“问题反馈”按钮，给我们留言，工作人员将尽快给您回复'
+    reply.msgType = 'text'
     console.log("最后响应消息的对象", reply)
     return kefu_compiled(reply)
 }
@@ -83,8 +99,10 @@ exports.getWechatAccessToken = async() => {
 }
 
 // 根据open_id 获取用户信息
-exports.getWechatUserInfo = () => {
-
+exports.getWechatUserInfo = async(openid) => {
+    var access_token = await this.getWechatAccessToken()
+    var user_info_url = CONF.wechat.api.getWechatUserinfo.url + '&access_token=' + access_token + '&openid=' + openid
+    return util.request(CONF.wechat.api.getWechatUserinfo.method, user_info_url)
 }
 
 exports.getWechatOauthCodeUrl = (url) => {
@@ -118,7 +136,6 @@ exports.getWechatQrcodeTicket = async(openid) => {
             }
         }
     }
-    console.log("奇奇怪怪的问题", JSON.stringify(opt))
     var res = await util.request(CONF.wechat.api.getQrcodeTicket.method, CONF.wechat.api.getQrcodeTicket.url + access_token, opt)
     return res
 }

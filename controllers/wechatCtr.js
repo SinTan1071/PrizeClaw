@@ -40,7 +40,7 @@ exports.index = async (ctx, next) => {
 // </xml>`
             var wechat_msg = await util.xmlToJson(xml)
             console.log("最终请求的结果", wechat_msg)
-            var server_msg = wechatService.replyWechat(wechat_msg.xml)
+            var server_msg = await wechatService.replyWechat(wechat_msg.xml)
             console.log("响应的结果", server_msg)
             ctx.body = server_msg
         } else {
@@ -72,8 +72,8 @@ exports.oauthWechat = async(ctx, next) => {
         if (wechat_userinfo && wechat_userinfo.openid){
             var user = await userService.getUserByWechatId(wechat_userinfo.openid)
             console.log("获取到user", user)
-            if (user && user.dataValues) {
-                var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user.dataValues)).toString('base64'))
+            if (user && user.id) {
+                var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user)).toString('base64'))
             }else{
                 var new_user = await userService.createWechatUser(wechat_userinfo)
                 if (new_user && new_user.wechat_openid) {
