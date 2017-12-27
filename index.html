@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <meta charset="UTF-8" name="" content="">
+    </head>
+    <body>
+        <div id="user" >
+            
+        </div>
+    </body>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script src="./base64.js"></script>
+    <script>
+        $(function () {
+           // 调用方法 
+            var data = GetQueryString("data")
+            if(!data){
+                window.location = "http://api.kikofeier.com/wechat/auth"
+            }else{
+                alert("有数据"+data)
+                var base64 = new Base64()
+                var userinfo = JSON.parse(base64.decode(data))
+                var img = `<img src="${userinfo.head_img}" alt="" style="width:500px;height:500px;">`
+                $("#user").append(img)
+            }
+        })
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+        
+    </script>
+</html>
