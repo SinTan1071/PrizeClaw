@@ -5,6 +5,10 @@ vue.use(vuex)
 
 export default new vuex.Store({
     state: {
+        screen: {
+            screenWidth: document.body.offsetWidth,
+            screenHeight: document.body.offsetHeight,
+        },
 
         },
     getters: {
@@ -19,11 +23,16 @@ export default new vuex.Store({
             localStorage.removeItem('token');
             // sessionStorage.removeItem('token');
             localStorage.removeItem('member_profile');
-            localStorage.removeItem('mexmber_login');
+            localStorage.removeItem('member_login');
         },
         UPDATE(state, value) {
             state.dynamicValidateForm = value
         },
+        //重设网页可见区域宽和网页可见区域高
+        onResizeSetting: (state, data) => {
+            state.screen.screenWidth = data.screenWidth;
+            state.screen.screenHeight = data.screenHeight;
+        }
     },
     actions: {
 

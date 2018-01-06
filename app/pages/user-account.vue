@@ -11,7 +11,7 @@
               <img slot="icon"  src="../images/home/money.png" class="user-pic">
             </span>
             <span class="title">趣玩一把</span>
-            <x-icon type="ios-arrow-right" size="15" style="margin-right: 20px;float: right;color: #fff"></x-icon>
+            <x-icon type="ios-arrow-right" size="30" style="margin-right: 20px;float: right;color: #fff"></x-icon>
             <p class="sub-title">这里是个人介绍</p>
         </div>
         <router-link :to="'/my-wallet'" class="mint-cell" >

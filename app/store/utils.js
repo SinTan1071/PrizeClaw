@@ -6,10 +6,17 @@ module.exports=(function () {
     var bodyRenderColor=function(url) {
         document.body.style.background=url;
     };
+    var onResize=function(obj) {
+        obj.$store.commit('onResizeSetting',{
+            screenWidth:document.body.offsetWidth,
+            screenHeight:document.body.offsetHeight,
+        });
+    };
 
     return{
         bodyRender:bodyRender,
-        bodyRenderColor:bodyRenderColor
+        bodyRenderColor:bodyRenderColor,
+        onResize:onResize
     }
 
 })()

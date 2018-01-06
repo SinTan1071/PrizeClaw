@@ -56,8 +56,8 @@
             }
     },
         created () {
-            // utils.bodyRender('#f4f6f9');//背景色
-           utils.bodyRenderColor('../images/home/outside.png')
+            utils.bodyRender('#f4f6f9');//背景色
+           // utils.bodyRenderColor('../images/home/outside.png')
         },
         components: {
             Tabbar,

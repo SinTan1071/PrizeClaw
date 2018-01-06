@@ -13,9 +13,6 @@
             <img src="../images/catch.png" class="catch catch-animation" ref="box1">
             <img src="../images/iPhone.png" class="iphone iphone-animation" ref="box2">
         </div>
-
-
-
         <tabbar>
             <tabbar-item selected>
                 <img slot="icon"  src="../images/mine/game-at.png">
@@ -30,11 +27,8 @@
                 <span slot="label">我的</span>
             </tabbar-item>
         </tabbar>
-
     </div>
 </template>
-
-
 <script>
     import { MessageBox } from 'mint-ui'; //引入miui messageBox
     import { XButton,Tabbar, TabbarItem, Group, Cell } from 'vux'
