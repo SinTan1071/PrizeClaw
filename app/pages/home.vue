@@ -7,18 +7,18 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="content">
- <!--            <img class="img_outside" style="width:100%;height:auto" src="../images/home/outside.png" /> -->
+            <!--            <img class="img_outside" style="width:100%;height:auto" src="../images/home/outside.png" /> -->
             <div class="nav" style="display:flex;justify-content: space-between">
                 <div class="nav-left" style="display:inline-block">
                     <span class="left-font">小米专场</span>
-                  <!--   <img src="../images/home/nav_light.png" style="width:120px;height:43px" /> -->
+                    <!--   <img src="../images/home/nav_light.png" style="width:120px;height:43px" /> -->
                 </div>
-                 <div class="nav-middle"  style="display:inline-block;z-index:10">
+                <div class="nav-middle"  style="display:inline-block;z-index:10">
                     <span class="middle-font" >苹果7P 专场  </span>
                     <p style="font-size:10px;margin-top: 1px" class="middle-font-two">150金币／次</p>
                     <!-- <img src="../images/home/nav_middle.png"  style="width:120px;height:43px" /> -->
                 </div>
-                 <div class="nav-right"  style="display:inline-block">
+                <div class="nav-right"  style="display:inline-block">
                     <span class="right-font">Mac专场</span>
                     <!-- <img src="../images/home/nav_right.png"  style="width:120px;height:43px" /> -->
                 </div>
@@ -28,7 +28,10 @@
             </div>
             <div>
                 <div style="text-align: center">
-                    <img src="../images/catch.png" class="catch catch-animation" ref="box1" style="z-index: 2;margin: 0 auto">
+                    <img src="../images/catch.png" id="catch_box1"class="catch catch-animation" ref="box1" style="z-index: 2;margin: 0 auto">
+                </div>
+                <div class="iphone-coincide " >
+
                 </div>
                 <div >
                     <img src="../images/huawei.png" class="iphone iphone-animation" ref="box2" style="z-index: 1">
@@ -49,12 +52,12 @@
                 <img src="../images/home/Conveyor.png"  style="width:100%;height:43px" />
             </div>
             <div class="nav" style="display:flex;justify-content:space-evenly">
-            <router-link  :to="'/remark'" >
-                <img src="../images/charge.png"  style="height:auto;height:50px" />
-            </router-link>
-            <div @click="start">
-                <img src="../images/begin.png"  style="width:auto;height:50px" />
-            </div>
+                <router-link  :to="'/recharge'" >
+                    <img src="../images/charge.png"  style="height:auto;height:50px" />
+                </router-link>
+                <div @click="start">
+                    <img src="../images/begin.png"  style="width:auto;height:50px" />
+                </div>
             </div>
 
         </div>
@@ -121,9 +124,26 @@
             },
             start(){
                 console.log(this.$refs.box1)
-                this.$refs.box1.style['animationPlayState'] = 'running';
-                this.$refs.box2.style['animationPlayState'] = 'running';
-                // this.$refs.box1.style.background="black";
+                // $(".btn").click(function(){
+                //     $(".b").css("-webkit-animation","anim 2s");
+                // })
+
+                // this.$refs.box1.css =("catch-animation","catch-animation_gwd-keyframes 2.5s linear 0s 1  normal forwards");
+                var catch_box1 = document.getElementById('catch_box1');
+                catch_box1.addEventListener('webkitAnimationEnd', endHandler);
+                console.log("llalallla")
+                function endHandler() {
+                    console.log("llalalllasdadadaas")
+                    catch_box1.removeEventListener('webkitAnimationEnd', endHandler);
+                    catch_box1.className = '';
+                    setTimeout(function () {
+                        catch_box1.className = 'catch-animation';
+                    }, 0);
+                }
+                // this.$refs.box1.style['animationPlayState'] = 'running';
+                // window.setTimeout(function(){
+                //     this.$refs.box1.style['animationPlayState'] = 'paused';
+                // },2500)
             },
             stop(){
                 console.log(this.$refs.box1)
@@ -131,7 +151,7 @@
                 this.$refs.box2.style['animationPlayState'] = 'paused';
                 // this.$refs.box1.style.background="black";
             }
-    },
+        },
         created () {
             window.onresize=function () {
                 setTimeout(function () {
@@ -139,7 +159,7 @@
                 }, 100);
             }
             // utils.bodyRender('#f4f6f9');//背景色
-           utils.bodyRenderColor('  url(../images/pic.png) no-repeat fixed top')
+            utils.bodyRenderColor('  url(../images/pic.png) no-repeat fixed top')
         },
         components: {
             Tabbar,
@@ -232,7 +252,7 @@
             }
 
         }
-        }
+    }
     .mint-msgbox{
         background-color:#ffe670;
         border-radius:20px;
@@ -285,7 +305,18 @@
         }
     }
     .catch-animation {
-        animation: catch-animation_gwd-keyframes 2.5s linear 0s infinite  normal forwards;
+        animation: catch-animation_gwd-keyframes 2.5s linear 0s 1  normal forwards;
+    }
+    .iphone-coincide {
+        position: absolute;
+        visibility: visible;
+        width: 100px;
+        height: 100px;
+        /*left: 500px;*/
+        top: 400px;
+        left:50%;
+        margin-left: -50px;
+        background-color: #abcdef;
     }
     .iphone {
         position: absolute;
