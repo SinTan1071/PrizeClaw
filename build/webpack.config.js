@@ -77,7 +77,7 @@ const webpackConfig = {
 
 module.exports = vuxLoader.merge(webpackConfig, {
     options: {
-        projectRoot: '/Users/JJM/code/catch/vue-cli/catch/'
+        projectRoot: '/Users/JJM/code/catch/vue-cli/git-catch/PrizeClaw'
     },
     plugins: ['vux-ui']
 });
