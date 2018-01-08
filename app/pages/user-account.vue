@@ -128,9 +128,6 @@
         created () {
             utils.bodyRender('#f4f6f9');//背景色
         },
-            components: {
-             // Useritem
-        },
         components: {
             Tabbar,
             TabbarItem,

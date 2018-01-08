@@ -49,18 +49,17 @@
                 <!--我的-->
             <!--</mt-tab-item>-->
         <!--</mt-tabbar>-->
-
         <tabbar>
             <tabbar-item selected>
-                <img slot="icon"  src="../images/mine/game-at.png">
+                <img slot="icon"  src="../images/mine/game-at.png" class="icon">
                 <span slot="label" style="  color:#f63a52">游戏</span>
             </tabbar-item>
             <tabbar-item link="/get-con">
-                <img slot="icon" src="../images/home/money.png">
+                <img slot="icon" src="../images/home/money.png" class="icon">
                 <span slot="label">领取金币</span>
             </tabbar-item>
             <tabbar-item  link="/user-account">
-                <img slot="icon" src="../images/home/me.png">
+                <img slot="icon" src="../images/home/me.png" class="icon">
                 <span slot="label">我的</span>
             </tabbar-item>
         </tabbar>
@@ -97,10 +96,10 @@
                     '4.用户中奖后可在平台兑换与商品等额人民币，或领取后由平台方快递送到用户手中，兑换或者领取将收取1%的手续费\n' +
                     '5.用户应遵循公平公正的游戏原则，不得使用其他作弊行为参与游戏');
             }
-    },
+        },
         created () {
             // utils.bodyRender('#f4f6f9');//背景色
-           utils.bodyRenderColor('../images/home/outside.png')
+           utils.bodyRenderColor('url(../images/home/outside.png)')
         },
         components: {
             Tabbar,
@@ -113,7 +112,7 @@
 
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss"  >
     html,body{
         height: 100%;
         width: 100%;
@@ -122,6 +121,10 @@
 
     }
     .home{
+        .icon{
+            width: 22px;
+            height: auto;
+        }
         .mint-header{
             background-color:#000;
         }
