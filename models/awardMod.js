@@ -12,8 +12,10 @@ const Award = ORM.define('award', {
     award_type : Sequelize.INTEGER.UNSIGNED, // 奖品对应的类型
     status : Sequelize.INTEGER.UNSIGNED, // 是否支付，发货状态
     express: Sequelize.STRING,
+    description : Sequelize.STRING,
     delivery_num : Sequelize.STRING,
     order_num : Sequelize.STRING,
+    money : Sequelize.FLOAT,
 }, {
     indexes: [
         {

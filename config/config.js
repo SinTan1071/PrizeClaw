@@ -12,6 +12,7 @@ var config = {
         appid : "wx68fe32050b5e5430",
         secret : "10176907464fca58cf293e48157a3017",
         domain : "http://api.kikofeier.com",
+        qrcode_host : "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=",
         admin : "oK4rH0UITk8mXBNWYeqN6uHvWdqg", // 贝武的open_id
         menu : {
             "button" : [
@@ -65,6 +66,14 @@ var config = {
                 UNAUTH:0,
                 AUTHED:1,
                 AUTHFAIL:2
+            },
+        }
+    },
+    type:{
+        user:{
+            bind:{
+                PHONE:0,
+                IDCARD:1
             }
         }
     }

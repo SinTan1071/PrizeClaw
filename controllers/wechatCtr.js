@@ -30,7 +30,7 @@ exports.index = async (ctx, next) => {
         if (local_sign == signature) {
             var xml = await wechatService.getWechatXml(ctx.req)
             console.log("请求的XML", xml)
-// debug
+// DEBUG
 // xml = `<xml><ToUserName><![CDATA[gh_b1d145b7e9ab]]></ToUserName>
 // <FromUserName><![CDATA[oK4rH0WURv1jB0U-bKulA4CJZt4c]]></FromUserName>
 // <CreateTime>1512891804</CreateTime>
