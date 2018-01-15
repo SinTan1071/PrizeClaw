@@ -115,11 +115,6 @@ module.exports = [
         component: resolve => require.ensure(['./pages/get-con.vue'], require => require(['./pages/get-con.vue'], resolve), 'pages/get-con')
     },
     {
-        name: 'animation',
-        path: '/animation',
-        component: resolve => require.ensure(['./pages/animation.vue'], require => require(['./pages/animation.vue'], resolve), 'pages/animation')
-    },
-    {
         name: 'animation2',
         path: '/animation2',
         component: resolve => require.ensure(['./pages/animation2.vue'], require => require(['./pages/animation2.vue'], resolve), 'pages/animation2')
