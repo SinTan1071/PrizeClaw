@@ -362,17 +362,6 @@
     .catch-animation {
         animation: catch-animation_gwd-keyframes 2.5s linear 0s infinite  normal forwards;
     }
-    .iphone-coincide {
-        position: absolute;
-        visibility: visible;
-        width: 100px;
-        height: 100px;
-        /*left: 500px;*/
-        top: 400px;
-        left:50%;
-        margin-left: -50px;
-        background-color: #abcdef;
-    }
     .iphone {
         position: absolute;
         visibility: visible;
