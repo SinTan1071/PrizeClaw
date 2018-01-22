@@ -63,21 +63,25 @@ const webpackConfig = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-
     plugins: [
         new htmlWebpackPlugin({
             inject: true,
             filename: 'index.html',
             template: path.resolve(__dirname, '../app/index.html')
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            jQuery: "jquery",
+            $: "jquery"
+        }),
+
     ]
 
 };
 
 module.exports = vuxLoader.merge(webpackConfig, {
     options: {
-        projectRoot: '/Users/JJM/code/catch/vue-cli/git2/'
+        projectRoot: '/Users/JJM/code/catch/vue-cli/git2/PrizeClaw/'
     },
     plugins: ['vux-ui']
 });

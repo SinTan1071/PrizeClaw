@@ -41,7 +41,7 @@
             </x-dialog>
             <div>
                 <div style="text-align: center">
-                    <img src="../images/catch.png" id="catch_box1"class="catch catch-animation" ref="box1" style="z-index: 2;margin: 0 auto">
+                    <img src="../images/catch.png" id="catch_box1"class="catch catch-animation" ref="box1" style="z-index: 2;margin: 0 auto" >
                 </div>
                 <!--<div class="iphone-coincide "  >-->
 
@@ -96,6 +96,7 @@
     import {ButtonTab,ButtonTabItem,Divider,XDialog, Tabbar, TabbarItem, Group, Cell } from 'vux'
     import {mapState} from 'vuex'
     import utils from '../store/utils'
+    import $ from 'jquery'
     let $query = {};
     let $data = {
         selected:'游戏',
@@ -144,28 +145,45 @@
                 this.gameRule=true
             },
             start(){
+//                $('.catch-animation').animate({
+//                    left:300
+//                }, {
+//                    duration: 500,
+//                    step: function() {
+//                        var that = this;
+//                            if(parseInt(that.style.left) >= parseInt(o.style.left)) {
+//                                console.log('经过障碍'+count++);
+//                                obstacle.shift();
+//                            }
+//                        ;
+//
+//                })
+                console.log('$ offeset',$(".catch-animation")[0].offsetLeft);
+                console.log('$',$(".catch-animation"));
+                console.log(' $("#gwd-image_2)', $("#gwd-image_2")[0].offsetLeft)
+//                console.log('reversedMessage',reversedMessage)
+                console.log('memberId',this.imageLeft)
 
-                // $(".btn").click(function(){
-                //     $(".b").css("-webkit-animation","anim 2s");
-                // })
+
 
                 // this.$refs.box1.css =("catch-animation","catch-animation_gwd-keyframes 2.5s linear 0s 1  normal forwards");
-                var catch_box1 = document.getElementById('catch_box1');
-                catch_box1.addEventListener('webkitAnimationEnd', endHandler);
+//                var catch_box1 = document.getElementById('catch_box1');
+//                catch_box1.addEventListener('webkitAnimationEnd', endHandler);
                 console.log("llalallla")
-                function endHandler() {
-                    console.log("llalalllasdadadaas")
-                    catch_box1.removeEventListener('webkitAnimationEnd', endHandler);
-                    catch_box1.className = '';
-                    setTimeout(function () {
-                        catch_box1.className = 'catch-animation';
-                    }, 0);
-                }
+//                function endHandler() {
+//                    console.log("llalalllasdadadaas")
+//                    catch_box1.removeEventListener('webkitAnimationEnd', endHandler);
+//                    catch_box1.className = '';
+//                    setTimeout(function () {
+//                        catch_box1.className = 'catch-animation';
+//                    }, 0);
+//                }
                 this.$refs.box1.style['animationPlayState'] = 'running';
-                var t = setTimeout(function (){
-                    this.$refs.box1.style['animationPlayState'] = 'paused';
-                    console.log('执行了');
-                }, 2500);
+                console.log(' 当前状态', this.$refs.box1.style['animationPlayState'])
+//                var t = setTimeout(function (){
+//                    this.$refs.box1.style['animationPlayState'] = 'paused';
+//                    console.log('执行了');
+//                }, 2500);
                 // window.setTimeout(function(){
                 //     this.$refs.box1.style['animationPlayState'] = 'paused';
                 // },2500)
@@ -184,7 +202,19 @@
                 }, 100);
             }
             // utils.bodyRender('#f4f6f9');//背景色
-           utils.bodyRenderColor('  url(../images/home/outside.png) no-repeat fixed top')
+           utils.bodyRenderColor('  url(../images/home/outsidenew.png) no-repeat fixed top')
+        },
+        computed:{
+            imageLeft: function () {
+                // `this` 指向 vm 实例
+                if($("#gwd-image_2")[0].offsetLeft==-100){
+                    return   this.$refs.box1.style['animationPlayState'] = 'running';
+                }else{
+                    return   this.$refs.box1.style['animationPlayState'] = 'paused';
+                }
+
+            }
+
         },
         components: {
             Divider,
@@ -197,7 +227,8 @@
             Cell
         },
         mounted(){
-             this.$refs.box1.style['animationPlayState'] = 'paused'
+
+            console.log(' $("#gwd-image_2)', $("#gwd-image_2")[0].offsetLeft)
         }
 
     }
@@ -208,9 +239,8 @@
     html,body{
         height: 100%;
         width: 100%;
-        background:url(../images/home/outside.png);
+        background:url(../images/home/outsidenew2.png);
         background-size: 100% 100%;
-
     }
     .weui-dialog{
         width: 80%;
@@ -359,9 +389,9 @@
             animation-timing-function: linear;
         }
     }
-    .catch-animation {
-        animation: catch-animation_gwd-keyframes 2.5s linear 0s infinite  normal forwards;
-    }
+    /*.catch-animation {*/
+        /*animation: catch-animation_gwd-keyframes 2s linear 0s infinite  normal forwards;*/
+    /*}*/
     .iphone {
         position: absolute;
         visibility: visible;
