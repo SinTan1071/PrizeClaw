@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const ORM = require('./registDB')
+const ORM = require('./baseORM')
 
 const User = ORM.define('user', {
         id : {

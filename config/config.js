@@ -67,6 +67,16 @@ var config = {
                 AUTHED:1,
                 AUTHFAIL:2
             },
+        },
+        award:{
+            taken:{
+                UNTAKEN:0, // 尚未领取
+                UNPAY:1, // 领取未支付
+                PAY:2, // 已经支付
+                UNSHIP:3, // 未发货
+                SHIPED:4, // 发货
+                TAKEN:5 // 领取了
+            }
         }
     },
     type:{

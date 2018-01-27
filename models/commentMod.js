@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const ORM = require('./baseORM')
 
-const Address = ORM.define('address', {
+const Comment = ORM.define('comment', {
     id: {
         type: Sequelize.INTEGER(255),
         primaryKey: true,
@@ -14,18 +14,18 @@ const Address = ORM.define('address', {
             key:'id'
         }
     }, // 用户
-    address : Sequelize.STRING,
-    receiver: Sequelize.STRING,
-    phone : Sequelize.STRING,
-    province : Sequelize.STRING,
-    city:Sequelize.STRING,
-    is_acq:Sequelize.INTEGER.UNSIGNED
+    status:Sequelize.INTEGER.UNSIGNED,
+    real_name:Sequelize.STRING,
+    phone:Sequelize.STRING,
+    email:Sequelize.STRING,
+    content: Sequelize.TEXT,
+    reply: Sequelize.TEXT
 }, {
     indexes: [
         {
-            fields: ['user_id']
+            fields: ['user_id', 'phone', 'email']
         }
     ]
 });
 
-module.exports = Address
+module.exports = Comment

@@ -18,3 +18,12 @@ exports.getAwardById = (award_id) => {
     }
     return crudService.readMod(awardMod, query)
 }
+
+exports.updateAward = (set, query) => {
+    return crudService.updateMod(awardMod, set, query)
+}
+
+exports.createAwardOrderNumer = () => {
+    // TODO 生成微信支付订单
+    return 123123123123
+}

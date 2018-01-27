@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const ORM = require('./registDB')
+const ORM = require('./baseORM')
 
 const Award = ORM.define('award', {
     id: {
@@ -7,9 +7,27 @@ const Award = ORM.define('award', {
         primaryKey: true,
         autoIncrement: true
     },
-    user_id : Sequelize.INTEGER(255),
-    address_id : Sequelize.INTEGER(255),
-    award_type : Sequelize.INTEGER.UNSIGNED, // 奖品对应的类型
+    user_id: {
+        type:Sequelize.INTEGER(255),
+        references:{
+            model:'User',
+            key:'id'
+        }
+    }, // 用户
+    address_id : {
+        type:Sequelize.INTEGER(255),
+        references:{
+            model:'Address',
+            key:'id'
+        }
+    }, // award_type : Sequelize.INTEGER.UNSIGNED, // 奖品对应的类型
+    game_id : {
+        type:Sequelize.INTEGER(255),
+        references:{
+            model:'Game',
+            key:'id'
+        }
+    },  // 奖品对应的类型
     status : Sequelize.INTEGER.UNSIGNED, // 是否支付，发货状态
     express: Sequelize.STRING,
     description : Sequelize.STRING,
