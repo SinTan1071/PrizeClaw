@@ -87,7 +87,7 @@ exports.getWechatAccessToken = async() => {
     var data = JSON.parse(access_token)
     console.log("获取到的文件JSON解析", data)
     if (!data || data.expires_in < timestamp) {
-        var res = await util.request(CONF.wechat.api.getAccessToken.method, CONF.wechat.api.getAccessToken.url)
+        var res = await util.request(CONF.wechat.api.getAccessToken.method, util.stringFormat(CONF.wechat.api.getAccessToken.url, {appid:CONF.wechat.appid, secret:CONF.wechat.secret}))
         console.log("微信请求access_token结果", res)
         if (res.access_token){
             res.expires_in = timestamp + (res.expires_in - 30) * 1000
@@ -103,24 +103,23 @@ exports.getWechatAccessToken = async() => {
 // 根据open_id 获取用户信息
 exports.getWechatUserInfo = async(openid) => {
     var access_token = await this.getWechatAccessToken()
-    var user_info_url = CONF.wechat.api.getWechatUserinfo.url + '&access_token=' + access_token + '&openid=' + openid
+    var user_info_url = util.stringFormat(CONF.wechat.api.getWechatUserinfo.url, {access_token: access_token, openid: openid})
     return util.request(CONF.wechat.api.getWechatUserinfo.method, user_info_url)
 }
 
 exports.getWechatOauthCodeUrl = (url) => {
     var scope = 'snsapi_userinfo'
-    var oauth_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + CONF.wechat.appid + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + scope + '&state=oauth#wechat_redirect'
-    return oauth_url
+    return util.stringFormat(CONF.wechat.api.oAuth.url, {appid:CONF.wechat.appid, redirect_uri: encodeURIComponent(url), scope:scope})
 }
 
 exports.getWechatUserInfoByOauth = async(code) => {
     console.log("微信OAuth的code", code)
-    var access_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+ CONF.wechat.appid +'&secret='+ CONF.wechat.secret +'&code='+ code +'&grant_type=authorization_code'
-    var res_access_token = await util.request('GET', access_token_url)
+    var access_token_url = util.stringFormat(CONF.wechat.api.oAuthAccessToken.url , {appid:CONF.wechat.appid , secret:CONF.wechat.secret , code: code})
+    var res_access_token = await util.request(CONF.wechat.api.oAuthAccessToken.method, access_token_url)
     console.log("微信OAuth的access_token", res_access_token)
     if (res_access_token.access_token){
-        var userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token="+ res_access_token.access_token +"&openid="+ res_access_token.openid +"&lang=zh_CN"
-        var res_userinfo = await util.request('GET', userinfo_url)
+        var userinfo_url = util.stringFormat(CONF.wechat.api.oAuthUserInfo, {access_token:res_access_token.access_token, openid:res_access_token.openid})
+        var res_userinfo = await util.request(CONF.wechat.api.oAuthUserInfo.method, userinfo_url)
         console.log("微信授权用户信息", res_userinfo)
         return res_userinfo
     }
@@ -138,6 +137,6 @@ exports.getWechatQrcodeTicket = async(openid) => {
             }
         }
     }
-    var res = await util.request(CONF.wechat.api.getQrcodeTicket.method, CONF.wechat.api.getQrcodeTicket.url + access_token, opt)
+    var res = await util.request(CONF.wechat.api.getQrcodeTicket.method, util.stringFormat(CONF.wechat.api.getQrcodeTicket.url, {access_token:access_token}), opt)
     return res
 }

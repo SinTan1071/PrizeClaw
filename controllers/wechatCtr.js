@@ -53,7 +53,7 @@ exports.index = async (ctx, next) => {
 exports.createMenu = async(ctx, next) => {
     var access_token = await wechatService.getWechatAccessToken()
     console.log("access_token", access_token)
-    var res = await util.request(CONF.wechat.api.createMenu.method, CONF.wechat.api.createMenu.url + access_token, CONF.wechat.menu)
+    var res = await util.request(CONF.wechat.api.createMenu.method, util.stringFormat(CONF.wechat.api.createMenu.url, {access_token: access_token}), CONF.wechat.menu)
     console.log("创建菜单微信响应", res)
 }
 
@@ -89,7 +89,7 @@ exports.oauthWechat = async(ctx, next) => {
 
 // 微信消息推送
 exports.sendMsg = async(ctx, next) => {
-    let url = 'https://api.douban.com/v2/movie/subject/26761416'
-    let data = await util.request('GET', url)
-    console.log("请求结口的数据", data)
+    // let url = 'https://api.douban.com/v2/movie/subject/26761416'
+    // let data = await util.request('GET', url)
+    // console.log("请求结口的数据", data)
 }

@@ -1,5 +1,3 @@
-const util = require('../common/util')
-
 var config = {
     index_page:"http://view.kikofeier.com",
     ignore_url:[
@@ -35,25 +33,37 @@ var config = {
         },
         api : {
             sendMsg: {
-                url: "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=",
+                url: "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=${access_token}",
                 method: 'POST'
             },
             createMenu:{
-                url : "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=",
+                url : "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=${access_token}",
                 method: 'POST'
             },
             getAccessToken:{
-                url : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx68fe32050b5e5430&secret=10176907464fca58cf293e48157a3017",
+                url : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appid}&secret=${secret}",
                 method: "GET"
             },
             getQrcodeTicket : {
-                url : "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=",
+                url : "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=${access_token}",
                 method: "POST"
             },
             getWechatUserinfo:{
-                url : "https://api.weixin.qq.com/cgi-bin/user/info?lang=zh_CN",
+                url : "https://api.weixin.qq.com/cgi-bin/user/info?lang=zh_CN&access_token=${access_token}&openid=${openid}",
                 method:"GET"
+            },
+            oAuth:{
+                url:"https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=${scope}&state=oauth#wechat_redirect"
+            },
+            oAuthAccessToken:{
+                url : 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appid}&secret=${secret}&code=${code}&grant_type=authorization_code',
+                method:'GET'
+            },
+            oAuthUserInfo:{
+                url:"https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN",
+                method:'GET'
             }
+
         }
     },
     db: {
