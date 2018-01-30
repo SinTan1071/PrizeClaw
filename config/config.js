@@ -7,6 +7,7 @@ var config = {
         '/wechat',
         '/wechat/auth'
     ],
+    coin_rate:20,
     wechat: {
         token : "sintan1071",
         appid : "wx68fe32050b5e5430",
