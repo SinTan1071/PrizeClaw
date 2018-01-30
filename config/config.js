@@ -1,3 +1,5 @@
+const util = require('../common/util')
+
 var config = {
     index_page:"http://view.kikofeier.com",
     ignore_url:[

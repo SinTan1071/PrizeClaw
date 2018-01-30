@@ -8,6 +8,7 @@ const Game = ORM.define('game', {
         autoIncrement: true
     },
     name : Sequelize.STRING,
+    image: Sequelize.STRING,
     description : Sequelize.TEXT,
     count : Sequelize.INTEGER(255).UNSIGNED,
     money : Sequelize.INTEGER(255).UNSIGNED,

@@ -112,3 +112,16 @@ exports.writeFile =  (fpath, content) => {
         })
     })
 }
+
+// 字符串替换
+exports.stringFormat = (str, obj) => {
+    if (typeof(obj) == 'object') {
+        for (let key in obj) 
+            str = str.replace(new RegExp("\\${" + key + "\\}", "g"), obj[key]);
+        return str;
+    } else {
+        for (let i = 0; i < obj.length; i++) 
+            str = str.replace(new RegExp("\\${" + i + "\\}", "g"), obj[i]);
+        return str;
+    }
+}
