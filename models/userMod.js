@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const ORM = require('./registDB')
+const ORM = require('./baseORM')
 
 const User = ORM.define('user', {
         id : {
@@ -17,7 +17,7 @@ const User = ORM.define('user', {
         // invite_token: Sequelize.STRING,
         // parent_invite_token : Sequelize.STRING,
         inviter_openid : Sequelize.STRING,
-        invite_code : Sequelize.STRING,
+        invite_code: Sequelize.STRING,
         token : Sequelize.STRING,
         coin: Sequelize.INTEGER(255),
     },{

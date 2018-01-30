@@ -4,7 +4,11 @@ exports.readMod = (mod, query) => {
         mod
             .findOne(query)
             .then(result => {
-                resolve(result)
+                if (result && result.dataValues){
+                    resolve(result.dataValues)
+                }else{
+                    resolve()
+                }
             })
             .catch(err => {
                 reject(err)

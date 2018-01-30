@@ -60,7 +60,8 @@ exports.request = (method, url, data, headers) => {
         method : method,
         url : url,
         json : true,
-        body : JSON.stringify(data),
+        // body : JSON.stringify(data),
+        body : data,
         headers : headers
     }
     return request(opt).then((response) => {
@@ -110,4 +111,17 @@ exports.writeFile =  (fpath, content) => {
             err ? reject(err):resolve()
         })
     })
+}
+
+// 字符串替换
+exports.stringFormat = (str, obj) => {
+    if (typeof(obj) == 'object') {
+        for (let key in obj) 
+            str = str.replace(new RegExp("\\${" + key + "\\}", "g"), obj[key]);
+        return str;
+    } else {
+        for (let i = 0; i < obj.length; i++) 
+            str = str.replace(new RegExp("\\${" + i + "\\}", "g"), obj[i]);
+        return str;
+    }
 }

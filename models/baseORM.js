@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const CONF = require('../config/config')
 
-const sequelize = new Sequelize({
+const baseORM = new Sequelize({
     database: CONF.db.database,
     username: CONF.db.username,
     password: CONF.db.password,
@@ -27,4 +27,4 @@ const sequelize = new Sequelize({
     }
 })
 
-module.exports = sequelize
+module.exports = baseORM

@@ -14,3 +14,16 @@ exports.getFriendsList = async (ctx, next) => {
     var friends = await userService.getUserFriends(ctx.USER.wechat_openid)
     console.log("朋友列表", friends)
 }
+
+exports.userBindInfo = async (ctx, next) =>{
+    var bind_type = ctx.body.bind_type
+    var value = ctx.body.value
+    switch (bind_type) {
+        case CONF.type.user.bind.PHONE:
+            
+            break;
+        case CONF.type.user.bind.IDCARD:
+
+            break;
+    }
+}

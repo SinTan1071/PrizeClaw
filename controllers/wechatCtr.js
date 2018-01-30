@@ -30,7 +30,7 @@ exports.index = async (ctx, next) => {
         if (local_sign == signature) {
             var xml = await wechatService.getWechatXml(ctx.req)
             console.log("请求的XML", xml)
-// debug
+// DEBUG
 // xml = `<xml><ToUserName><![CDATA[gh_b1d145b7e9ab]]></ToUserName>
 // <FromUserName><![CDATA[oK4rH0WURv1jB0U-bKulA4CJZt4c]]></FromUserName>
 // <CreateTime>1512891804</CreateTime>
@@ -40,7 +40,7 @@ exports.index = async (ctx, next) => {
 // </xml>`
             var wechat_msg = await util.xmlToJson(xml)
             console.log("最终请求的结果", wechat_msg)
-            var server_msg = wechatService.replyWechat(wechat_msg.xml)
+            var server_msg = await wechatService.replyWechat(wechat_msg.xml)
             console.log("响应的结果", server_msg)
             ctx.body = server_msg
         } else {
@@ -53,7 +53,7 @@ exports.index = async (ctx, next) => {
 exports.createMenu = async(ctx, next) => {
     var access_token = await wechatService.getWechatAccessToken()
     console.log("access_token", access_token)
-    var res = await util.request(CONF.wechat.api.createMenu.method, CONF.wechat.api.createMenu.url + access_token, CONF.wechat.menu)
+    var res = await util.request(CONF.wechat.api.createMenu.method, util.stringFormat(CONF.wechat.api.createMenu.url, {access_token: access_token}), CONF.wechat.menu)
     console.log("创建菜单微信响应", res)
 }
 
@@ -72,8 +72,8 @@ exports.oauthWechat = async(ctx, next) => {
         if (wechat_userinfo && wechat_userinfo.openid){
             var user = await userService.getUserByWechatId(wechat_userinfo.openid)
             console.log("获取到user", user)
-            if (user && user.dataValues) {
-                var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user.dataValues)).toString('base64'))
+            if (user && user.id) {
+                var index_url = CONF.index_page + "?data=" + (new Buffer(JSON.stringify(user)).toString('base64'))
             }else{
                 var new_user = await userService.createWechatUser(wechat_userinfo)
                 if (new_user && new_user.wechat_openid) {
@@ -89,7 +89,7 @@ exports.oauthWechat = async(ctx, next) => {
 
 // 微信消息推送
 exports.sendMsg = async(ctx, next) => {
-    let url = 'https://api.douban.com/v2/movie/subject/26761416'
-    let data = await util.request('GET', url)
-    console.log("请求结口的数据", data)
+    // let url = 'https://api.douban.com/v2/movie/subject/26761416'
+    // let data = await util.request('GET', url)
+    // console.log("请求结口的数据", data)
 }

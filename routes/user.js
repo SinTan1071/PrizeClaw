@@ -11,7 +11,7 @@ router.prefix('/user')
 //   ctx.body = 'this is a users/bar response'
 // })
 
-router.post('/account', userCtr.getUserInfo)
+router.get('/account', userCtr.getUserInfo)
 router.get('/friends', userCtr.getFriendsList)
 
 
