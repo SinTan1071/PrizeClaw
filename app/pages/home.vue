@@ -41,7 +41,7 @@
             </x-dialog>
             <div>
                 <div style="text-align: center">
-                    <img src="../images/catch.png" id="catch_box1"class="catch catch-animation" ref="box1" style="z-index: 2;margin: 0 auto" >
+                    <img src="../images/catch.png" id="catch_box1" class="catch catch-animation" ref="box1" style="z-index: 2;margin: 80px auto" >
                 </div>
                 <!--<div class="iphone-coincide "  >-->
 
@@ -56,13 +56,14 @@
                 <img  src="../images/huawei.png" id="gwd-image_8" class="huaweiphone8 huaweiphone8-animation">
 
             </div>
-            <div style="padding: 276px 27px 0 27px">
+            <!-- <div style="padding: 276px 27px 0 27px" ref="stairs"> -->
+                 <div ref="stairs" class="stairs-one">
                 <img src="../images/home/Conveyor.png"  style="width:100%;height:43px" />
             </div>
-            <div style="padding: 0px 27px 0 27px;margin-top: 50px">
+            <div style="padding: 0px 27px 0 27px;margin-top: 50px" class="stairs-two">
                 <img src="../images/home/Conveyor.png"  style="width:100%;height:43px" />
             </div>
-            <div class="nav" style="display:flex;justify-content:space-evenly;margin-top: 50px">
+            <div class="button-qurey">
             <router-link  :to="'/recharge'" >
                 <img src="../images/charge.png"  style="height:auto;height:50px" />
             </router-link>
@@ -158,6 +159,9 @@
 //                        ;
 //
 //                })
+                console.log('document.documentElement.clientWidth',document.documentElement.clientWidth)
+                console.log('document.documentElement.clientHeight',document.documentElement.clientHeight)
+                console.log('window.onresize',window.onresize)
                 console.log('$ offeset',$(".catch-animation")[0].offsetLeft);
                 console.log('$',$(".catch-animation"));
                 console.log(' $("#gwd-image_2)', $("#gwd-image_2")[0].offsetLeft)
@@ -203,6 +207,9 @@
             }
             // utils.bodyRender('#f4f6f9');//背景色
            utils.bodyRenderColor('  url(../images/home/outsidenew.png) no-repeat fixed top')
+           console.log('document.documentElement.clientWidth',document.documentElement.clientWidth)
+           console.log('document.documentElement.clientHeight',document.documentElement.clientHeight)
+           console.log('this.$refs',this.$refs)
         },
         computed:{
             imageLeft: function () {
@@ -245,6 +252,7 @@
     .weui-dialog{
         width: 80%;
     }
+
     .vux-button-group > a{
         text-underline: none;
     }
@@ -267,6 +275,27 @@
         border-bottom: 1px solid #fff;
     }
     .home{
+        .button-qurey{
+            display: flex;
+            justify-content: space-evenly;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: absolute;
+            z-index: 500;
+            bottom: 53px;
+            width: 100%;
+        }
+        .stairs-one{
+           padding-top: 200px;
+           padding-left: 27px;
+           padding-right: 27px;
+            // position: absolute;
+            // z-index: 500;
+            // bottom: 200px;
+            // width: 100%;
+
+        }
         .mint-header{
             background-color:#000;
         }
@@ -377,21 +406,38 @@
     }
     @keyframes catch-animation_gwd-keyframes {
         0% {
-            top: -130px;
+            top: -300px;
             animation-timing-function: linear;
         }
         60% {
-            top: 40px;
+            top: -200px;
             animation-timing-function: linear;
         }
         100% {
-            top: -160px;
+            top: -140px;
             animation-timing-function: linear;
         }
     }
-    /*.catch-animation {*/
-        /*animation: catch-animation_gwd-keyframes 2s linear 0s infinite  normal forwards;*/
-    /*}*/
+    .catch-animation {
+        animation: catch-animation_gwd-keyframes 2s linear 0s 1  normal forwards;
+    }
+    @keyframes catch-animation_gwd-keyframes-back {
+    0% {
+        top: -140px;
+        animation-timing-function: linear;
+    }
+    60% {
+        top: -200px;
+        animation-timing-function: linear;
+    }
+    100% {
+        top: -300px;
+        animation-timing-function: linear;
+     }
+    }
+    .catch-animation-back{
+         animation: catch-animation_gwd-keyframes-back 2s linear 0s 1  normal forwards;
+    }
     .iphone {
         position: absolute;
         visibility: visible;
@@ -485,12 +531,12 @@
         position: absolute;
         height: 75px;
         width: 75px;
-        top: 400px;
+        top: 324px;
         left: -100px;
     }
     .huaweiphone2 {
         position: absolute;
-        top: 400px;
+        top: 324px;
         width: 75px;
         height: 75px;
         left: 20px;
@@ -499,14 +545,14 @@
         position: absolute;
         width: 75px;
         height: 75px;
-        top: 400px;
+        top: 324px;
         left: 140px;
     }
     .huaweiphone4 {
         position: absolute;
         width: 75px;
         height: 75px;
-        top: 400px;
+        top: 324px;
         left: 260px;
     }
     .huaweiphone5 {
@@ -514,28 +560,28 @@
         width: 50px;
         height: 50px;
         left: 0px;
-        top: 330px;
+        top: 254px;
     }
     .huaweiphone6 {
         position: absolute;
         width: 50px;
         height: 50px;
         left: 120px;
-        top: 330px;
+        top: 254px;
     }
     .huaweiphone7 {
         position: absolute;
         width: 50px;
         height: 50px;
         left: 240px;
-        top: 330px;
+        top: 254px;
     }
     .huaweiphone8 {
         position: absolute;
         width: 50px;
         height: 50px;
         left: 360px;
-        top: 330px;
+        top: 254px;
     }
     @keyframes huaweiphone4-animation_gwd-keyframes {
         0% {

@@ -1,10 +1,3 @@
-/**
- * victoria gulpfile
- *
- * @author koyeo
- *
- * @link http://github.com/fourever/victoria
- */
 
 var gulp = require('gulp');
 var gutil = require("gulp-util");

@@ -2,10 +2,12 @@
     color: #f63a52;
     margin: 0;
 }
-.weui-tabbar__icon{
+.weui-tabbar__icon {
     color: #f63a52;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
 }
-
 .mint-header{
     background-color:#000;
 }
