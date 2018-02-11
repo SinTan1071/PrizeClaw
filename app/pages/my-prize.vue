@@ -13,6 +13,8 @@
                 <p class="sub-title">128GB 黑色 大屏5.5英寸 可等额兑换</p>
                 <span class="prize">参考价：¥5988</span>
                 <mt-button  type="default"  class="get-button" @click="getPrize()">领取</mt-button>
+                      <alert v-model="dialogShow" :title="Congratulations" @on-show="onShow" @on-hide="onHide">  领取奖品平台将<br>
+收取1%的服务费，请知晓！ </alert>
             </div>
         </div>
         <div class="prize-list">
@@ -30,11 +32,13 @@
 
 
 <script>
-    import { MessageBox } from 'mint-ui'; //引入miui messageBox
+    import { Alert } from 'vux'
     import utils from '../store/utils'
     let $query = {};
     let $data = {
-        popupVisible:false
+        popupVisible:false,
+        dialogShow:false,
+        Congratulations:'提示'
     };
 
     export default {
@@ -44,18 +48,21 @@
         },
         methods: {
             getPrize(){
-                MessageBox({
-                    title: '提示',
-                    message: '领取奖品平台将\n' +
-                    '收取1%的服务费，请知晓！',
-                    showCancelButton: true
-                });
-
+                this.dialogShow=true
+            },
+            onShow(){
+                
+            },
+            onHide () {
+               this.$router.push('/get-prize')
             }
         },
         created () {
             utils.bodyRender('#f4f6f9');//背景色
-        }
+        },
+        components: {
+            Alert
+        },
     }
 
 </script>

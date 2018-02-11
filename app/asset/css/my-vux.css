@@ -32,3 +32,18 @@
     background-color:#fff !important;
     height: 0px !important;
 }
+
+.weui-dialog__btn_primary {
+    background-image: linear-gradient(-45deg, #F8487E 0%, #FF998B 100%);
+    color: #fff !important;
+}
+.weui-dialog__hd{
+    font-size: 22px;
+    color: #212121;
+    line-height: 22px;
+}
+.weui-dialog__bd{
+    font-size: 15px;
+    color: #212121;
+    line-height: 24px;
+}

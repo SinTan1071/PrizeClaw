@@ -38,7 +38,7 @@
         <div class="footer">
             <p style="">实付款：<span style="color: #f63a52">2900.88元</span></p>
             <p style=" "> (含运费)</p>
-            <x-button class="submit-order" action-type="button"  link="/demo">确认支付</x-button>
+            <x-button class="submit-order" action-type="button"  link="/user-account">确认支付</x-button>
         </div>
 
     </div>
