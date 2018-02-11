@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "jquery": "^3.3.1",
     "layer.mobile": "^1.0.5",
     "mint-ui": "^2.2.13",
     "qwest": "^4.5.0",

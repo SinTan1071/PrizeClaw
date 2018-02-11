@@ -26,13 +26,23 @@
             <div>
                 <mt-button type="primary" @click="clickRule()" class="rule">规则</mt-button>
             </div>
-            <x-dialog v-model="gameRule" hide-on-blur :dialog-style="{'max-width': '100%', width: '100%', height: '50%', 'background-color': 'transparent'}">
-                <button-tab v-model="demo01">
-                    <button-tab-item @on-item-click="gameRules()">游戏规则</button-tab-item>
-                    <button-tab-item @on-item-click="prizeIntroduction()">奖品介绍</button-tab-item>
-                </button-tab>
-                <div style="background-color:#fff;color:#fff;text-align:center;" @click="gameRule = false" >
-                    <span style="font-size:30px;">HELLO WORLD</span>
+            <x-dialog v-model="gameRule" hide-on-blur :dialog-style="{'max-width': '100%','padding-right':'30px','height':'50%','padding-left':'30px','background-color': 'transparent'}">
+                <tab>
+                    <tab-item selected >游戏规则</tab-item>
+                    <tab-item >奖品介绍</tab-item>
+                </tab>
+                <div style="background-color:#fff;color:#fff;text-align:center;padding:0 30px" @click="gameRule = false" >
+                    <span style="" class="dialog-content">1.苹果专场内产品由京东自营、官方等渠道进货以确保为正品<br>
+                    2.专场内产品为：苹果8 64GB 奖品以5折优惠券发放，中奖后用户可在奖品中心领取，支付尾款后顺丰快递到用户手中<br>
+                        3.此专场游戏需80金币夹一次，中奖后可自行选择颜色
+                        1.苹果专场内产品由京东自营、官方等渠道进货以确保为正品<br>
+                    2.专场内产品为：苹果8 64GB 奖品以5折优惠券发放，中奖后用户可在奖品中心领取，支付尾款后顺丰快递到用户手中<br>
+                        3.此专场游戏需80金币夹一次，中奖后可自行选择颜色
+                        1.苹果专场内产品由京东自营、官方等渠道进货以确保为正品<br>
+                    2.专场内产品为：苹果8 64GB 奖品以5折优惠券发放，中奖后用户可在奖品中心领取，支付尾款后顺丰快递到用户手中<br>
+                        3.此专场游戏需80金币夹一次，中奖后可自行选择颜色
+                    </span>
+                    
                     <br>
                     <br>
                     <x-icon type="ios-close-outline" style="fill:#fff;"></x-icon>
@@ -94,7 +104,7 @@
 
 <script>
     import { MessageBox } from 'mint-ui'; //引入miui messageBox
-    import {ButtonTab,ButtonTabItem,Divider,XDialog, Tabbar, TabbarItem, Group, Cell } from 'vux'
+    import {ButtonTab,ButtonTabItem,Divider,XDialog, Tabbar, TabbarItem, Group, Cell,Tab, TabItem } from 'vux'
     import {mapState} from 'vuex'
     import utils from '../store/utils'
     import $ from 'jquery'
@@ -212,15 +222,15 @@
            console.log('this.$refs',this.$refs)
         },
         computed:{
-            imageLeft: function () {
-                // `this` 指向 vm 实例
-                if($("#gwd-image_2")[0].offsetLeft==-100){
-                    return   this.$refs.box1.style['animationPlayState'] = 'running';
-                }else{
-                    return   this.$refs.box1.style['animationPlayState'] = 'paused';
-                }
+            // imageLeft: function () {
+            //     // `this` 指向 vm 实例
+            //     if($("#gwd-image_2")[0].offsetLeft==-100){
+            //         return   this.$refs.box1.style['animationPlayState'] = 'running';
+            //     }else{
+            //         return   this.$refs.box1.style['animationPlayState'] = 'paused';
+            //     }
 
-            }
+            // }
 
         },
         components: {
@@ -231,7 +241,9 @@
             Tabbar,
             TabbarItem,
             Group,
-            Cell
+            Cell,
+            Tab, 
+            TabItem
         },
         mounted(){
 
@@ -275,6 +287,12 @@
         border-bottom: 1px solid #fff;
     }
     .home{
+        .dialog-content{
+            font-size: 12px;
+            color: #212121;
+            letter-spacing: 0;
+            line-height: 24px;
+        }
         .button-qurey{
             display: flex;
             justify-content: space-evenly;

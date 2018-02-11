@@ -8,6 +8,27 @@
     width: 20px;
     height: 20px;
 }
+
 .mint-header{
     background-color:#000;
+}
+.vux-tab{
+    border-top-left-radius: 10px ;
+    border-top-right-radius: 10px;
+    background: #FF6074 !important;
+    box-shadow: 0 0 6px 0 #931A3D;
+    color: #fff !important
+}
+.vux-tab-item{
+    color: #fff !important
+}
+.vux-tab .vux-tab-item.vux-tab-selected{
+    background: #CC1C33;
+    color: #fff !important;
+    border-top-left-radius: 10px ;
+    border-top-right-radius: 10px;
+}
+.vux-tab-ink-bar{
+    background-color:#fff !important;
+    height: 0px !important;
 }
