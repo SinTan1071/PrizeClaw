@@ -31,7 +31,7 @@
                     <tab-item selected >游戏规则</tab-item>
                     <tab-item >奖品介绍</tab-item>
                 </tab>
-                <div style="background-color:#fff;color:#fff;text-align:center;padding:0 30px" @click="gameRule = false" >
+                <div style="background-color:#fff;color:#fff;text-align:center;padding:0 30px;over" @click="gameRule = false" >
                     <span style="" class="dialog-content">1.苹果专场内产品由京东自营、官方等渠道进货以确保为正品<br>
                     2.专场内产品为：苹果8 64GB 奖品以5折优惠券发放，中奖后用户可在奖品中心领取，支付尾款后顺丰快递到用户手中<br>
                         3.此专场游戏需80金币夹一次，中奖后可自行选择颜色

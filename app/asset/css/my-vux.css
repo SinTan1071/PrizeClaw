@@ -47,3 +47,7 @@
     color: #212121;
     line-height: 24px;
 }
+.weui-tabbar__icon {
+    width: 20px !important;
+    height: 20px !important
+}

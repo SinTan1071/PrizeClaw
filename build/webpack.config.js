@@ -74,11 +74,8 @@ const webpackConfig = {
             jQuery: "jquery",
             $: "jquery"
         }),
-
     ]
-
 };
-
 module.exports = vuxLoader.merge(webpackConfig, {
     options: {
         projectRoot: '/Users/JJM/code/catch/vue-cli/git2/PrizeClaw/'
